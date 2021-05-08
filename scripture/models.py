@@ -20,8 +20,8 @@ class Book(models.Model):
 
 
 class Chapter(models.Model):
-    number = models.IntegerField(max_length=55)
-    title = models.CharField()
+    number = models.IntegerField()
+    title = models.CharField(max_length=55)
     verses = models.ForeignKey('Verse', on_delete=models.CASCADE)
 
     def __str__(self):
@@ -30,8 +30,8 @@ class Chapter(models.Model):
 
 class Verse(models.Model):
     number = models.IntegerField()
+    text = models.TextField()
     textf = models.TextField()
-    textu = models.TextField()
 
     def __str__(self):
         return f"({self.number}) {self.textf}"
