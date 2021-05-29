@@ -8,6 +8,12 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class User(AbstractUser):
     pass
 
+class Identity(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self) -> str:
+        return self.name
+
 
 class Character(models.Model):
     name = models.CharField(max_length=50)
@@ -15,8 +21,12 @@ class Character(models.Model):
     fullname = models.TextField()
     gender = models.CharField(max_length=10)
     age = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(969)])
-    about_me = models.TextField()
+    about = models.TextField()
+    identiy = models.ManyToManyField(Identity)
     is_writter = models.BooleanField()
+
+    def __str__(self) -> str:
+        return f"{self.name}"
 
 
 class BooKMeta(models.Model):
@@ -32,7 +42,7 @@ class Book(models.Model):
     symbol = models.CharField(max_length=3)
     title = models.CharField(max_length=33)
     titlelong = models.CharField(max_length=99)
-    book_meta = models.OneToOneField(BooKMeta, on_delete=models.CASCADE, null=True)
+    book_meta = models.OneToOneField(BooKMeta, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return f"({self.number}) {self.name}"
@@ -44,7 +54,7 @@ class Chapter(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"({self.number}) {self.title}"
+        return f"{self.book.name} ({self.number})"
 
 
 class Verse(models.Model):
