@@ -11,6 +11,7 @@ https://en.wikipedia.org/wiki/Chapters_and_verses_of_the_Bible
 
 UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='table_name';
 
+### Script to add chapters
 from scripture.models import Book, Chapter
 from scripture.epk_scripture.helpers import ar_numbers
 
@@ -20,3 +21,11 @@ print(book)
 for ar_number in ar_numbers[:22]:
     chapter = Chapter(number = ar_number[0], title = ar_number[2], book = book)
     chapter.save()
+
+
+### script to add verses
+with open("file.txt", "r") as f:
+    chapter = f.read()
+    verses = re.split(r'\d+', text)
+    for (idx, verse) in enumerate(verses[1:]):
+        print (str(idx + 1) + "- " + verse + '\n')
