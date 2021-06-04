@@ -9,7 +9,7 @@ https://en.wikipedia.org/wiki/Chapters_and_verses_of_the_Bible
 
 ### cli Commands
 
-UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='table_name';
+UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='scripture_verse';
 
 ### Script to add chapters
 from scripture.models import Book, Chapter
@@ -23,9 +23,23 @@ for ar_number in ar_numbers[:22]:
     chapter.save()
 
 
-### script to add verses
+### Script to add verses
 with open("file.txt", "r") as f:
     chapter = f.read()
     verses = re.split(r'\d+', text)
     for (idx, verse) in enumerate(verses[1:]):
         print (str(idx + 1) + "- " + verse + '\n')
+
+
+### Script to add all verses
+with open("books/1.txt", "r", encoding="utf8") as f:
+    book_txt = f.read()
+    chs = book_txt.split('+++')
+    for (i, ch) in enumerate(chs):
+        book = Book.objects.get(number=1)
+        chapter = Chapter.objects.filter(book=book).get(number=i+1)
+        verses = re.split(r'\d+', ch)
+        for (idx, verse) in enumerate(verses[1:]):
+            print (verse[:-1])
+            vs = Verse(number=idx+1, textf=verse[:-1], chapter=chapter)
+            vs.save()
