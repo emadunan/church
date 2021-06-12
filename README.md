@@ -50,6 +50,22 @@ for n in range(1, 67):
                 vs = Verse(number=idx+1, textf=verse.strip(), chapter=chapter)
                 vs.save()
 
+### Script to add all verses
+for n in range(1, 67):
+    with open(f"books/{n}.txt", "r", encoding="utf8") as f:
+        book_txt = f.read()
+        chs = book_txt.split('+++')
+        for (i, ch) in enumerate(chs):
+            book = Book.objects.get(number=n)
+            chapter = Chapter.objects.filter(book=book).get(number=i+1)
+            verses = re.split(r'\d+', ch)
+            for (idx, verse) in enumerate(verses[1:]):
+                print (verse[:-1])
+                # vs = Verse(number=idx+1, textf=verse.strip(), chapter=chapter)
+                vs = Verse.objects.get(number=idx+1)
+                vs.text = verse.strip()
+                vs.save()
+
 ### Check verses count
 book = Book.objects.get(pk=1)
 chapters = book.chapter_set.all()
