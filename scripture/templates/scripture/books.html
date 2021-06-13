@@ -14,8 +14,8 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">الاسم</th>
-                <th scope="col">الاسم الكامل</th>
+                <th scope="col">السفر</th>
+                <th scope="col">عدد الاصحاحات</th>
                 <th scope="col">الاختصار</th>
                 <th scope="col" class="text-end">English Title</th>
             </tr>
@@ -24,8 +24,10 @@
             {% for book in books %}
             <tr>
                 <th scope="row">{{ book.id|arnum }}</th>
-                <td>{{ book.title }}</td>
-                <td>{{ book.titlelong }}</td>
+                <td>
+                    <a class="cc_book-title__link" href="{% url 'book' book.id %}">{{ book.titlelong }}</a>
+                </td>
+                <td>{{ book.chapter_set.count|arnum }}</td>
                 <td>{{ book.symbol }}</td>
                 <td class="text-end">
                     <a class="btn btn-sm btn-outline-secondary" href="{% url 'book' book.id %}">{{ book.name|title }}</a>

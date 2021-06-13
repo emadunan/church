@@ -36,6 +36,16 @@ nav ul {
     font-size: 1.2rem;
 }
 
+.cc_book-title__link {
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+}
+
+.cc_book-title__link:hover {
+    text-decoration: underline;
+}
+
 #id_chapters__list {
     display: flex;
     flex-direction: row;
@@ -54,7 +64,20 @@ nav ul {
     font-family: rekkas;
 }
 
+.cc_chapter__content {
+    text-align: justify;
+    line-height: 220%;
+}
+
 .cc_verse-txt {
+    display: inline;
     font-family: amiri;
     font-size: 1.2rem;
+}
+
+.cc_verse-num {
+    font-family: "Amiri";
+    color: #ff0000;
+    font-size: 0.7rem;
+    vertical-align: super;
 }

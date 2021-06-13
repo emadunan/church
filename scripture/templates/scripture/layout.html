@@ -6,13 +6,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="{% static 'scripture/bootstrap-5.0.1-dist/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'scripture/bootstrap-5.0.1-dist/css/bootstrap.css.map' %}"> -->
-    <link rel="stylesheet" href="{% static 'scripture/bootstrap-5.0.1-dist/css/bootstrap.rtl.min.css' %}">
-    <link rel="stylesheet" href="{% static 'scripture/bootstrap-5.0.1-dist/css/bootstrap.rtl.min.css.map' %}">
+    <!-- <link rel="stylesheet" href="{% static 'scripture/bootstrap5/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'scripture/bootstrap5/css/bootstrap.css.map' %}"> -->
+    <link rel="stylesheet" href="{% static 'scripture/bootstrap5/css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'scripture/bootstrap5/css/bootstrap.rtl.min.css.map' %}">
     <link rel="stylesheet" href="{% static 'scripture/css/style.css' %}">
-    <script src="{% static 'scripture/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'scripture/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js.map' %}"></script>
+    <script src="{% static 'scripture/bootstrap5/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'scripture/bootstrap5/js/bootstrap.bundle.min.js.map' %}"></script>
     <script src="{% static 'scripture/js/script.js' %}"></script>
     
     {% block script %}{% endblock %}
@@ -32,6 +32,9 @@
                 <ul class="navbar-nav">
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'books' %}">اسفار الكتاب</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">شخصيات الكتاب</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">المقالات</a>
