@@ -1,17 +1,81 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'scripture/style.css' %}">
-    <script src="{% static 'scripture/jscript.js' %}"></script>
-    <title>Document</title>
+    <!-- <link rel="stylesheet" href="{% static 'scripture/bootstrap-5.0.1-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'scripture/bootstrap-5.0.1-dist/css/bootstrap.css.map' %}"> -->
+    <link rel="stylesheet" href="{% static 'scripture/bootstrap-5.0.1-dist/css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'scripture/bootstrap-5.0.1-dist/css/bootstrap.rtl.min.css.map' %}">
+    <link rel="stylesheet" href="{% static 'scripture/css/style.css' %}">
+    <script src="{% static 'scripture/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'scripture/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js.map' %}"></script>
+    <script src="{% static 'scripture/js/script.js' %}"></script>
+    
+    {% block script %}{% endblock %}
+        
+    <title>Dashboard</title>
 </head>
 <body>
-    <h1>Hello Church!</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam mollitia ipsa, ipsum ipsam beatae impedit nostrum eius rem? Laudantium, molestiae.</p>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">الكنيسة المصرية</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'books' %}">اسفار الكتاب</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">المقالات</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">الاعدادات</a>
+                  </li>
+                  <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Dropdown link
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </li> -->
+                </ul>
+
+                <div class="btn-group ms-auto">
+                    <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        اهلا عماد
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-start">
+                        <li><a class="dropdown-item" href="#">تعديل</a></li>
+                        <li><a class="dropdown-item" href="#">خروج</a></li>
+                    </ul>
+                </div>
+
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    <main class="mt-4">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+        
 </body>
 </html>

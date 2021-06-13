@@ -1,0 +1,39 @@
+{% extends 'scripture/layout.html' %}
+{% load static %}
+{% load scripture_extras %}
+
+
+
+{% block content %}
+<div id="id_books__title">
+    <h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">أسفار الكتاب المقدس</h1>
+</div>
+
+<div id="id_books__tbl">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">الاسم</th>
+                <th scope="col">الاسم الكامل</th>
+                <th scope="col">الاختصار</th>
+                <th scope="col" class="text-end">English Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <th scope="row">{{ book.id|arnum }}</th>
+                <td>{{ book.title }}</td>
+                <td>{{ book.titlelong }}</td>
+                <td>{{ book.symbol }}</td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'book' book.id %}">{{ book.name|title }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

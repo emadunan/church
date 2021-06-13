@@ -1,0 +1,42 @@
+{% extends 'scripture/layout.html' %}
+{% load static %}
+{% load scripture_extras %}
+
+
+
+{% block content %}
+<div id="id_books__title">
+    <h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">{{book.titlelong}}</h1>
+    <div id="id_chapters__list" class="">
+        {% for chapter in chapters %}
+            <a class="cc_chapter-number__link" href="#chapter-{{chapter.id}}">{{chapter.number|arnum}}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0"></div>
+{% for chapter in chapters %}
+    <div class="cc_chapter">
+        <div class="cc_chapter__title" id="chapter-{{chapter.id}}">
+            <h3 class="text-center shadow p-3 mb-5 bg-body rounded">
+                الأصحَاحُ {{chapter.title}}
+                <span style="float: left;">
+                    <a href="#navbarNavDropdown">
+                        <img src="{% static 'scripture/img/home_w.png' %}" alt="Home" style="width: 2rem;">
+                    </a>
+                </span>
+            </h3>
+        </div>
+        
+        {% for verse in chapter.verse_set.all %}
+            <p class="cc_verse-txt"><span>{{verse.number|arnum}} </span>{{ verse.textf }}</p>
+        {% endfor %}
+            
+    </div>
+{% endfor %}
+</div>
+    
+
+
+
+{% endblock %}

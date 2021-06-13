@@ -1,0 +1,60 @@
+/* Font Installation */
+@font-face {
+    font-family: rekkas;
+    src: url('../fonts/Rakkas/Rakkas-Regular.ttf');
+}
+
+@font-face {
+    font-family: amiri;
+    src: url('../fonts/Amiri/Amiri-Bold.ttf');
+    font-weight: bold;
+}
+
+header {
+    font-family: rekkas;
+}
+
+.navbar-brand {
+    font-size: 2rem;
+}
+
+nav ul {
+    font-size: 1.5rem;
+}
+
+#id_books__title {
+    font-family: rekkas;
+}
+
+.table thead {
+    font-family: rekkas;
+    font-size: 1.3rem;
+}
+
+.table tbody {
+    font-family: amiri;
+    font-size: 1.2rem;
+}
+
+#id_chapters__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+}
+
+.cc_chapter-number__link {
+    padding: 0.2rem;
+    margin: 0.2rem;
+    font-size: 1.7rem;
+}
+
+.cc_chapter__title {
+    font-family: rekkas;
+}
+
+.cc_verse-txt {
+    font-family: amiri;
+    font-size: 1.2rem;
+}
