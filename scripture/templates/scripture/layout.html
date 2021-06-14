@@ -6,41 +6,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="{% static 'scripture/bootstrap5/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'scripture/bootstrap5/css/bootstrap.css.map' %}"> -->
+    <link rel="icon"href="{% static 'scripture/img/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'scripture/bootstrap5/css/bootstrap.rtl.min.css' %}">
     <link rel="stylesheet" href="{% static 'scripture/bootstrap5/css/bootstrap.rtl.min.css.map' %}">
     <link rel="stylesheet" href="{% static 'scripture/css/style.css' %}">
     <script src="{% static 'scripture/bootstrap5/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'scripture/bootstrap5/js/bootstrap.bundle.min.js.map' %}"></script>
     <script src="{% static 'scripture/js/script.js' %}"></script>
     
     {% block script %}{% endblock %}
         
-    <title>Dashboard</title>
+    <title>Church</title>
 </head>
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <nav class="navbar navbar-expand-lg navbar-light bg-warning py-0">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">الكنيسة المصرية</a>
+              <a class="navbar-brand text-light" href="{% url 'main' %}">الكتاب المقدس</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'books' %}">اسفار الكتاب</a>
+                    <a class="nav-link {% if '/books' in request.path %}active{% endif %}"
+                    href="{% url 'books' %}" aria-current="page">الاسفار</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">شخصيات الكتاب</a>
+                    <a class="nav-link {% if '/characters' in request.path %}active{% endif %}"
+                    href="{% url 'characters' %}">الشخصيات</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">المقالات</a>
+                    <a class="nav-link {% if '/places' in request.path %}active{% endif %}"
+                    href="{% url 'places' %}">الاماكن</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">الاعدادات</a>
+                    <a class="nav-link {% if '/blogs' in request.path %}active{% endif %}"
+                    href="{% url 'blogs' %}">المدونات</a>
                   </li>
                   <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -54,30 +56,34 @@
                   </li> -->
                 </ul>
 
-                <div class="btn-group ms-auto">
+                <h3 class="ms-auto text-light">مرحباً</h3>
+                <!-- <div class="btn-group ms-auto">
                     <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        اهلا عماد
+                        مرحباً
                     </button>
                     <ul class="dropdown-menu dropdown-menu-start">
-                        <li><a class="dropdown-item" href="#">تعديل</a></li>
+                        <li><a class="dropdown-item" href="#">الإعدادات</a></li>
+                        <li><a class="dropdown-item" href="#">البروفيل</a></li>
                         <li><a class="dropdown-item" href="#">خروج</a></li>
                     </ul>
-                </div>
+                </div> -->
 
               </div>
             </div>
           </nav>
     </header>
 
-    <main class="mt-4">
+    <!-- THE MAIN SECTION -->
+    <main>
         <div class="container">
             {% block content %}{% endblock %}
         </div>
     </main>
 
-    <footer>
-
+    <!-- THE FOOTER SECTION -->
+    <footer class="bg-warning text-center text-light">
+      <p>الكنيسة المصرية @ 2020</p>
     </footer>
         
 </body>

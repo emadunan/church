@@ -6,20 +6,20 @@
 
 {% block content %}
 <div id="id_books__title">
-    <h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">{{book.titlelong}}</h1>
-    <div id="id_chapters__list" class="">
+    <h1 class="text-center shadow-lg p-3 mb-4 bg-body rounded">{{book.titlelong}}</h1>
+    <div id="id_chapters__list" class="mb-4">
         {% for chapter in chapters %}
-            <a class="cc_chapter-number__link" href="#chapter-{{chapter.id}}">{{chapter.number|arnum}}</a>
+            <a class="cc_chapter-number__link px-1 py-0 my-0 mx-1" href="#chapter-{{chapter.id}}" data-bs-offset="30">{{chapter.number|arnum}}</a>
         {% endfor %}
     </div>
 </div>
 
-<div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0"></div>
+<div data-bs-spy="scroll" data-bs-target="#id_chapters__list" data-bs-offset="30" class="scrollspy-chapters" tabindex="0"></div>
 {% for chapter in chapters %}
     <div class="cc_chapter">
 
         <div class="cc_chapter__title" id="chapter-{{chapter.id}}">
-            <h3 class="text-center shadow p-3 mb-5 bg-body rounded">
+            <h3 class="text-center shadow p-3 mb-3 bg-body rounded">
                 الأصحَاحُ {{chapter.title}}
                 <span style="float: left;">
                     <a href="#">

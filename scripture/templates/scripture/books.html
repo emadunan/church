@@ -15,9 +15,9 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">السفر</th>
-                <th scope="col">عدد الاصحاحات</th>
-                <th scope="col">الاختصار</th>
-                <th scope="col" class="text-end">English Title</th>
+                <th scope="col" class="browser-only">عدد الاصحاحات</th>
+                <th scope="col" class="browser-only">الاختصار</th>
+                <th scope="col" class="text-end browser-only">En Title</th>
             </tr>
         </thead>
         <tbody>
@@ -27,10 +27,10 @@
                 <td>
                     <a class="cc_book-title__link" href="{% url 'book' book.id %}">{{ book.titlelong }}</a>
                 </td>
-                <td>{{ book.chapter_set.count|arnum }}</td>
-                <td>{{ book.symbol }}</td>
-                <td class="text-end">
-                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'book' book.id %}">{{ book.name|title }}</a>
+                <td class="browser-only">{{ book.chapter_set.count|arnum }}</td>
+                <td class="browser-only">{{ book.symbol }}</td>
+                <td class="text-end browser-only">
+                    <a class="cc_book-title__link" href="{% url 'book' book.id %}">{{ book.name|title }}</a>
                 </td>
             </tr>
             {% endfor %}
