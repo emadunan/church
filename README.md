@@ -78,7 +78,7 @@ print(total)
 
 
 ### Create new record for query purpose
-
+from scripture.models import Verse
 verses = Verse.objects.all()
 
 for verse in verses:
@@ -87,16 +87,30 @@ for verse in verses:
     print(verse.textq)
 
 
-### Change (أ) or (إ) or (آ) with (ا)
-
+### Change (أ) or (إ) or (آ) with (ا), (ة) with (ه), (ى) with (ي)
+from scripture.models import Verse
 verses = Verse.objects.all()
 
 for verse in verses:
-    for c in verse.textq
+    textt = ''
+    for c in verse.textq:
         if c == 'أ':
             c = 'ا'
-        elif c == '':
-            c = ''
-        elif c == '':
-            c = ''
+        elif c == 'إ':
+            c = 'ا'
+        elif c == 'آ':
+            c = 'ا'
+        elif c == 'ة':
+            c = 'ه'
+        elif c == 'ى':
+            c = 'ي'
+        else:
+            c = c
+        
+        textt += c
+    
+    verse.textq = textt
+    print(verse)
+    print(verse.textq)
     verse.save()
+    
