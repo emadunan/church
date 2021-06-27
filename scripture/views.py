@@ -22,6 +22,27 @@ def view_book(request, id):
         "chapters": book.chapter_set.all()
     })
 
+def view_search(request):
+    if request.method == 'POST':
+        criteria = request.POST.get('criteria')
+        fields = [ request.POST.get('books'), request.POST.get('characters'), request.POST.get('blogs') ]
+        print(fields)
+
+        if criteria and 'books' in fields:
+            verses = Verse.objects.filter(text__contains=criteria)
+        else:
+            verses = None
+
+        return render(request, "scripture/search.html", {
+            "verses": verses,
+            "search_criteria": criteria,
+            "search_fields": fields
+        })
+
+    else:
+        return render(request, "scripture/search.html")
+
+
 def view_characters(request):
     return render(request, "scripture/characters.html")
 

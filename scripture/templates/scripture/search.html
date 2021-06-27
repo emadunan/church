@@ -1,0 +1,63 @@
+{% extends 'scripture/layout.html' %}
+{% load static %}
+{% load scripture_extras %}
+
+
+{% block content %}
+
+<div id="id_search__section" class="rounded my-2 mx-4 p-2">
+    <form action="{% url 'search' %}" method="POST">
+        {% csrf_token %}
+        <div id="id_search-group">
+            <input type="text" class="form-control mx-1" name="criteria">
+            <button class="btn btn-success mx-1 px-1 py-0" type="submit">بحث</button>
+        </div>
+
+        <!-- Fields Options-->
+        <div class="mx-1" id="id_fields-options__checks">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="books" name="books" checked>
+                <label class="form-check-label" for="inlineCheckbox1">الاسفار</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="characters" name="characters">
+                <label class="form-check-label" for="inlineCheckbox2">الشخصيات</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="blogs" name="blogs">
+                <label class="form-check-label" for="inlineCheckbox3">الاماكن</label>
+            </div>
+        </div>
+        
+    </form>
+</div>
+
+<div id="id_search-results__preview" class="mx-4">
+    
+    {% if 'books' in search_fields %}
+    <h5 id="id_search-books__heading" class="text-right shadow p-2 mb-3 bg-body rounded" data-criteria="{{search_criteria}}">
+        نتيجة البحث فى اسفار الكتاب المقدس عن "{{search_criteria}}"
+        <span style="float: left;">{{verses.count|arnum}}</span>
+    </h5>
+    
+    {% if verses %}
+    <ul>
+        {% for verse in verses %}
+        <li>
+            <p>{{verse.textf}} <span style="white-space: nowrap;">({{verse.chapter.book.title}} {{verse.chapter.number|arnum}} : {{verse.number|arnum}})</span></p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>لا يوجد نتائج للبحث عن "{{search_criteria}}"</p>
+    {% endif %}
+    {% endif %}
+        
+    
+        
+    
+</div>
+
+
+
+{% endblock %}

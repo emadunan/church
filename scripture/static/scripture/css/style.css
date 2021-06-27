@@ -18,6 +18,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
+    font-family: rekkas;
 }
 
 footer {
@@ -47,10 +48,6 @@ main {
     margin-bottom: auto;
 }
 
-header {
-    font-family: rekkas;
-}
-
 .navbar-brand {
     font-size: 2rem;
     color: #ffffff;
@@ -58,6 +55,24 @@ header {
 
 .dropdown-menu {
     min-width: 3rem;
+}
+
+#id_search__section {
+    background-image: url('../img/navbar-img.jpg');
+}
+
+#id_search-group {
+    display: flex;
+    flex-direction: row;
+}
+
+#id_search-group button {
+    font-family: rekkas;
+    font-size: 1.6rem;
+}
+
+#id_search-group input {
+    font-family: amiri;
 }
 
 nav ul {
@@ -147,6 +162,19 @@ nav ul {
 #id_under-construction__txt {
     display: none;
     text-align: center;
+}
+
+/* SEARCH SECTION */
+#id_fields-options__checks {
+    font-family: rekkas;
+}
+
+#id_search-results__preview h5 {
+    font-family: rekkas;
+}
+
+#id_search-results__preview p {
+    font-family: amiri;
 }
 
 
