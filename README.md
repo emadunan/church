@@ -75,3 +75,28 @@ for (idx, chapter) in enumerate(chapters):
     total += versesCount
 
 print(total)
+
+
+### Create new record for query purpose
+
+verses = Verse.objects.all()
+
+for verse in verses:
+    verse.textq = verse.text
+    verse.save()
+    print(verse.textq)
+
+
+### Change (أ) or (إ) or (آ) with (ا)
+
+verses = Verse.objects.all()
+
+for verse in verses:
+    for c in verse.textq
+        if c == 'أ':
+            c = 'ا'
+        elif c == '':
+            c = ''
+        elif c == '':
+            c = ''
+    verse.save()

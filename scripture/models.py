@@ -61,6 +61,7 @@ class Verse(models.Model):
     number = models.IntegerField()
     text = models.TextField()
     textf = models.TextField()
+    textq = models.TextField()
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
 
     def __str__(self):
