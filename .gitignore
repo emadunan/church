@@ -178,5 +178,9 @@ Thumbs.db
 !.vscode/extensions.json
 *.code-workspace
 
+### Production ###
+env/**
+static/**
+
 # https://www.toptal.com/developers/gitignore/api/linux,vscode,django
 # https://www.toptal.com/developers/gitignore?templates=linux,vscode,django
