@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<div id="id_search__section" class="rounded my-2 mx-4 p-2">
+<div id="id_search__section" class="rounded my-2 p-2">
     <form action="{% url 'search' %}" method="POST">
         {% csrf_token %}
         <div id="id_search-group">
@@ -32,7 +32,7 @@
     </form>
 </div>
 
-<div id="id_search-results__preview" class="mx-4">
+<div id="id_search-results__preview">
     
     {% if 'books' in search_fields %}
     <h5 id="id_search-books__heading" class="text-right shadow p-2 mb-3 bg-body rounded" data-criteria="{{search_criteria}}">
@@ -44,7 +44,9 @@
     <ul>
         {% for verse in verses %}
         <li>
-            <p>{{verse.textf}} <span style="white-space: nowrap;">({{verse.chapter.book.title}} {{verse.chapter.number|arnum}} : {{verse.number|arnum}})</span></p>
+            <a href="{% url 'book' verse.chapter.book.id %}?verse={{verse.id}}#chapter-{{verse.chapter.id}}" target="_blank" class="cc_verse__link">
+                <p>{{verse.textf}} <span style="white-space: nowrap;">({{verse.chapter.book.title}} {{verse.chapter.number|arnum}} : {{verse.number|arnum}})</span></p>
+            </a>
         </li>
         {% endfor %}
     </ul>

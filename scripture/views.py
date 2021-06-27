@@ -25,11 +25,13 @@ def view_book(request, id):
 def view_search(request):
     if request.method == 'POST':
         criteria = request.POST.get('criteria')
+        criteria = criteria.replace('أ', 'ا').replace('إ', 'ا').replace('آ', 'ا').replace('ة', 'ه').replace('ى', 'ي')
+
         fields = [ request.POST.get('books'), request.POST.get('characters'), request.POST.get('blogs') ]
         print(fields)
 
         if criteria and 'books' in fields:
-            verses = Verse.objects.filter(text__contains=criteria)
+            verses = Verse.objects.filter(textq__contains=criteria)
         else:
             verses = None
 
