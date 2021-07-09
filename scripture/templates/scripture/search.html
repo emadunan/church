@@ -10,7 +10,10 @@
         {% csrf_token %}
         <div id="id_search-group">
             <input type="text" class="form-control mx-1" name="criteria">
-            <button class="btn btn-success mx-1 px-1 py-0" type="submit">بحث</button>
+            <button class="btn btn-success mx-1 px-1 py-0" type="submit">
+                بحث
+                <img src="{% static 'scripture/img/loupe-w.png' %}" alt="." style="width: 1.5rem;">
+            </button>
         </div>
 
         <!-- Fields Options-->

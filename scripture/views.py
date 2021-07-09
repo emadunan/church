@@ -7,6 +7,26 @@ def view_index(request):
     return render(request, "scripture/index.html")
 
 
+def view_guide(request):
+    return render(request, "scripture/guide.html")
+
+
+def view_login(request):
+    if request.method == 'POST':
+        pass
+
+    else:
+        return render(request, "scripture/login.html")
+
+
+def view_register(request):
+    if request.method == 'POST':
+        pass
+
+    else:
+        return render(request, "scripture/register.html")
+
+
 def view_books(request):
     books = Book.objects.all()
     return render(request, "scripture/books.html", {

@@ -1,12 +1,18 @@
 /* Font Installation */
 @font-face {
-    font-family: rekkas;
+    font-family: rakkas;
     src: url('../fonts/Rakkas/Rakkas-Regular.ttf');
 }
 
 @font-face {
     font-family: amiri;
     src: url('../fonts/Amiri/Amiri-Bold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: cairo;
+    src: url('../fonts/Cairo/Cairo-Bold.ttf');
     font-weight: bold;
 }
 
@@ -18,7 +24,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    font-family: rekkas;
+    font-family: rakkas;
 }
 
 footer {
@@ -28,7 +34,7 @@ footer {
     position: fixed;
     left: 0;
     bottom: 0;
-    font-family: rekkas;
+    font-family: rakkas;
 }
 
 main {
@@ -57,18 +63,28 @@ main {
     min-width: 3rem;
 }
 
+#id_login__link {
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.55);
+}
+
+#id_login__link:hover {
+    color: #000000;
+    cursor: pointer;
+}
+
 #id_search__section {
     background-image: url('../img/navbar-img.jpg');
 }
 
 #id_search-group {
     display: flex;
-    flex-direction: row;
 }
 
 #id_search-group button {
-    font-family: rekkas;
-    font-size: 1.6rem;
+    font-family: rakkas;
+    font-size: 1.4rem;
+    width: 5rem;
 }
 
 #id_search-group input {
@@ -80,7 +96,7 @@ nav ul {
 }
 
 #id_about-scripture {
-    font-family: rekkas;
+    font-family: rakkas;
 }
 
 #id_about-scripture p {
@@ -94,11 +110,11 @@ nav ul {
 }
 
 #id_books__title {
-    font-family: rekkas;
+    font-family: rakkas;
 }
 
 .table thead {
-    font-family: rekkas;
+    font-family: rakkas;
     font-size: 1.3rem;
 }
 
@@ -129,7 +145,7 @@ nav ul {
 }
 
 .cc_chapter__title {
-    font-family: rekkas;
+    font-family: rakkas;
 }
 
 .cc_chapter__title::before {
@@ -170,11 +186,11 @@ nav ul {
 
 /* SEARCH SECTION */
 #id_fields-options__checks {
-    font-family: rekkas;
+    font-family: rakkas;
 }
 
 #id_search-results__preview h5 {
-    font-family: rekkas;
+    font-family: rakkas;
 }
 
 #id_search-results__preview p {
@@ -185,6 +201,21 @@ nav ul {
     color: #000000;
     text-decoration: none;
     font-size: 1.2rem;
+}
+
+
+/* Generals */
+.cc_input-label {
+    font-family: cairo;
+}
+
+.cc_input-control {
+    font-family: cairo;
+}
+
+.cc_note-paragraph {
+    font-family: cairo;
+    font-size: 0.8rem;
 }
 
 

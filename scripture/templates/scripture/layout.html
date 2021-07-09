@@ -48,6 +48,11 @@
                     <a class="nav-link {% if '/blogs' in request.path %}active{% endif %}"
                     href="{% url 'blogs' %}">المدونات</a>
                   </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link {% if '/guide' in request.path %}active{% endif %}"
+                    href="{% url 'guide' %}">دليل الموقع</a>
+                  </li>
                   <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Dropdown link
@@ -60,7 +65,7 @@
                   </li> -->
                 </ul>
 
-                <h3 class="ms-auto">مرحباً</h3>
+                <a id="id_login__link" class="ms-auto nav-link" href="{% url 'login' %}">تسجيل الدخول</a>
                 <!-- <div class="btn-group ms-auto">
                     <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">

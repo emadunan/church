@@ -1,0 +1,50 @@
+{% extends 'scripture/layout.html' %}
+{% load static %}
+
+
+{% block content %}
+<form>
+  
+  <div class="mb-3">
+    <input type="text" class="form-control cc_input-control" id="id_username" aria-describedby="usernameHelp" placeholder="اسم المستخدم">
+    <!-- <div id="usernameHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+  </div>
+
+  <div class="mb-3">
+    <input type="email" class="form-control cc_input-control" id="id_email" aria-describedby="emailHelp" placeholder="البريد الالكتروني">
+    <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+  </div>
+
+  <div class="mb-3">
+    <input type="text" class="form-control cc_input-control" id="id_mobile" aria-describedby="mobilelHelp" placeholder="رقم الموبيل">
+    <!-- <div id="mobileHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+  </div>
+
+  <div class="mb-3">
+    <input type="text" class="form-control cc_input-control" id="id_first-name" aria-describedby="firstNamelHelp" placeholder="الاسم الاول">
+    <!-- <div id="firstNamelHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+  </div>
+
+  <div class="mb-3">
+    <input type="text" class="form-control cc_input-control" id="id_last-name" aria-describedby="lastNameHelp" placeholder="اسم العائلة">
+    <!-- <div id="lastNameHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+  </div>
+
+  <div class="mb-3">
+    <input type="password" class="form-control cc_input-control" id="id_password" aria-describedby="passwordHelp" placeholder="كلمة المرور">
+    <!-- <div id="passwordHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+  </div>
+
+  <div class="mb-3">
+    <input type="password" class="form-control cc_input-control" id="id_confirm" aria-describedby="confirmHelp" placeholder="تاكيد كلمة المرور">
+    <!-- <div id="confirmHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+  </div>
+
+
+  <button type="submit" class="btn btn-success cc_input-label">
+    انشاء حساب&nbsp&nbsp&nbsp&nbsp
+    <img src="{% static 'scripture/img/log-in-w.png' %}" alt="Login" style="width: 2rem;">
+  </button>
+</form>
+
+{% endblock %}

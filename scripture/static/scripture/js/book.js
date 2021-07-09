@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     highlightVerse();
 
-
-
 })
 
 
@@ -15,8 +13,6 @@ function highlightVerse() {
 
     const verse = document.querySelector(`#verse-${verseId}`);
     verse.style.background = '#e9ff32';
-    // const text = verse.innerHTML;
-    // verse.innerHTML = `<mark>${text}</mark>`;
 }
 
 // HIGHLIGHT FUNCTIONALITY
@@ -26,9 +22,19 @@ function highlightSelection() {
     if (window.getSelection().toString() != "") {
         var selection = window.getSelection();
         var range = selection.getRangeAt(0);
-        var allWithinRangeParent = range.commonAncestorContainer.getElementsByTagName("*");
+        console.log(range)
 
         var allSelected = [];
+
+        if (!range.commonAncestorContainer.innerHTML) {
+
+            var allWithinRangeParent = [range.commonAncestorContainer.parentElement];
+            console.log(allWithinRangeParent)
+
+        } else {
+            var allWithinRangeParent = range.commonAncestorContainer.getElementsByTagName("*");
+        }
+        
         for (var i = 0, el; el = allWithinRangeParent[i]; i++) {
             // The second parameter says to include the element 
             // even if it's not fully selected
@@ -36,7 +42,6 @@ function highlightSelection() {
                 allSelected.push(el);
             }
         }
-
 
         allSelected.forEach(element => {
             element.style.background = '#e9ff32';
@@ -52,9 +57,17 @@ function ereaseAllSelections() {
     if (window.getSelection().toString() != "") {
         var selection = window.getSelection();
         var range = selection.getRangeAt(0);
-        var allWithinRangeParent = range.commonAncestorContainer.getElementsByTagName("*");
-
+        
         var allSelected = [];
+        if (!range.commonAncestorContainer.innerHTML) {
+
+            var allWithinRangeParent = [range.commonAncestorContainer.parentElement];
+            console.log(allWithinRangeParent)
+
+        } else {
+            var allWithinRangeParent = range.commonAncestorContainer.getElementsByTagName("*");
+        }
+
         for (var i = 0, el; el = allWithinRangeParent[i]; i++) {
             // The second parameter says to include the element 
             // even if it's not fully selected
