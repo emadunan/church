@@ -6,7 +6,17 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 # Scripture models.
 
 class User(AbstractUser):
-    pass
+    country = models.ForeignKey('Country', null=True, on_delete=models.SET_NULL)
+    mobile = models.CharField(max_length=22, null=True)
+    gender = models.CharField(max_length=4, null=True)
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=50)
+    code = models.CharField(max_length=7)
+    iso = models.CharField(max_length=3)
+    title = models.CharField(max_length=100)
+
 
 class Identity(models.Model):
     name = models.CharField(max_length=50)
