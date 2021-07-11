@@ -12,7 +12,9 @@ function highlightVerse() {
     const verseId = urlString.substring(urlString.indexOf('=') + 1, urlString.indexOf('#'));
 
     const verse = document.querySelector(`#verse-${verseId}`);
-    verse.style.background = '#e9ff32';
+    if (verse) {
+        verse.style.background = '#e9ff32';
+    }
 }
 
 // HIGHLIGHT FUNCTIONALITY
