@@ -7,27 +7,29 @@
   
   <div class="mb-3">
     <input type="text" class="form-control cc_input-control" id="id_username" aria-describedby="usernameHelp" placeholder="اسم المستخدم">
-    <!-- <div id="usernameHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+    <div id="usernameHelp" class="form-text">لتسجيل الدخول، يفضل ان يكون باللغة الانجليزية، ويجب عليك عدم الافصاح به!</div>
   </div>
 
   <div class="mb-3">
-    <input type="email" class="form-control cc_input-control" id="id_email" aria-describedby="emailHelp" placeholder="البريد الالكتروني">
+    <input type="email" class="form-control cc_input-control text-center" id="id_email" aria-describedby="emailHelp" placeholder="البريد الالكتروني">
     <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3 input-group">
     <input type="text" class="form-control cc_input-control" id="id_mobile" aria-describedby="mobilelHelp" placeholder="رقم الموبيل">
+    <select class="form-select cc_input-control" aria-label="Default select example">
+      <!-- <option selected>Open this select menu</option> -->
+      {% for country in countries %}
+        <option value="{{ country.id }}" {% if country.id == 63 %}selected{% endif %}>{{country.title}} ({{country.code}}+) </option>
+      {% endfor %}
+    </select>
     <!-- <div id="mobileHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3 input-group">
     <input type="text" class="form-control cc_input-control" id="id_first-name" aria-describedby="firstNamelHelp" placeholder="الاسم الاول">
-    <!-- <div id="firstNamelHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-  </div>
-
-  <div class="mb-3">
     <input type="text" class="form-control cc_input-control" id="id_last-name" aria-describedby="lastNameHelp" placeholder="اسم العائلة">
-    <!-- <div id="lastNameHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+    <!-- <div id="firstNamelHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
   <div class="mb-3">

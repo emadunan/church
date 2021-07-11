@@ -1,6 +1,6 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from .models import Book, Chapter, Verse
+from .models import Book, Chapter, Verse, Country
 
 # APP VIEWS.
 def view_index(request):
@@ -24,7 +24,10 @@ def view_register(request):
         pass
 
     else:
-        return render(request, "scripture/register.html")
+        countries = Country.objects.all().order_by('title')
+        return render(request, "scripture/register.html", {
+            "countries": countries
+        })
 
 
 def view_books(request):

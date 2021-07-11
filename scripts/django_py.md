@@ -111,9 +111,21 @@ print(folder_path)
 
 ### Read countries data from csv
 import csv
+import codecs
+from scripture.models import Country
 
-with open("D:\\.Sabbath\\church\\scripts\\countries.csv", "r") as file:
+#### For Normal Characters
+with open("D:\\.Sabbath\\church\\scripts\\countries1.csv", 'rU') as file:
     reader = csv.reader(file)
-    next(reader)
     for row in reader:
-        print(row[0], row[1], row[4])
+        print(row[0], row[1], row[4], row[5])
+        country = County(name=row[0], code=row[1], iso=row[4], title=row[5])
+        county.save()
+
+#### For Unicode Characters
+csvReader = csv.reader(codecs.open('D:\\.Sabbath\\church\\scripts\\countries1.csv', 'rU', 'utf-16'))
+for row in csvReader:
+    print(row[0], row[1], row[2], row[3])
+    country = Country(name=row[0], code=row[1], iso=row[2], title=row[3])
+    country.save()
+

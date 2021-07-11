@@ -11,9 +11,15 @@
 }
 
 @font-face {
-    font-family: cairo;
+    font-family: cairoBold;
     src: url('../fonts/Cairo/Cairo-Bold.ttf');
     font-weight: bold;
+}
+
+@font-face {
+    font-family: cairoRegular;
+    src: url('../fonts/Cairo/Cairo-Regular.ttf');
+    font-weight: normal;
 }
 
 
@@ -206,16 +212,20 @@ nav ul {
 
 /* Generals */
 .cc_input-label {
-    font-family: cairo;
+    font-family: cairoBold;
 }
 
 .cc_input-control {
-    font-family: cairo;
+    font-family: cairoBold;
 }
 
 .cc_note-paragraph {
-    font-family: cairo;
+    font-family: cairoBold;
     font-size: 0.8rem;
+}
+
+.form-text {
+    font-family: cairoRegular;
 }
 
 
