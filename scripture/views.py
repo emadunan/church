@@ -20,11 +20,30 @@ def view_login(request):
 
 
 def view_register(request):
+    countries = Country.objects.all().order_by('title')
+
+    # Receive data from the post request and assign it into variables
     if request.method == 'POST':
-        pass
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        mobile = request.POST.get('mobile')
+        country = request.POST.get('country')
+        first_name = request.POST.get('firstName')
+        last_name = request.POST.get('lastName')
+        password = request.POST.get('password')
+        confirm = request.POST.get('confirm')
+
+    # Validating received inputs
+    if (not username or not email or not first_name or not last_name or not password or not confirm):
+        return render(request, "scripture/register.html", {
+            "countries": countries,
+            "errorMessage": "Please fill all required fields"
+        }) 
+
+        print(username)
+        return HttpResponse(username)
 
     else:
-        countries = Country.objects.all().order_by('title')
         return render(request, "scripture/register.html", {
             "countries": countries
         })

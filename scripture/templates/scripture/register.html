@@ -3,21 +3,27 @@
 
 
 {% block content %}
-<form>
+<form action="{%url 'register' %}" method="POST">
+
+  {% csrf_token %}
   
   <div class="mb-3">
-    <input type="text" class="form-control cc_input-control" id="id_username" aria-describedby="usernameHelp" placeholder="اسم المستخدم">
+    <input type="text" class="form-control cc_input-control" id="id_username"
+      aria-describedby="usernameHelp" placeholder="اسم المستخدم" name="username">
     <div id="usernameHelp" class="form-text">لتسجيل الدخول، يفضل ان يكون باللغة الانجليزية، ويجب عليك عدم الافصاح به!</div>
   </div>
 
   <div class="mb-3">
-    <input type="email" class="form-control cc_input-control text-center" id="id_email" aria-describedby="emailHelp" placeholder="البريد الالكتروني">
+    <input type="email" class="form-control cc_input-control text-center" id="id_email"
+      aria-describedby="emailHelp" placeholder="البريد الالكتروني" name="e_mail">
     <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
   <div class="mb-3 input-group">
-    <input type="text" class="form-control cc_input-control" id="id_mobile" aria-describedby="mobilelHelp" placeholder="رقم الموبيل">
-    <select class="form-select cc_input-control" aria-label="Default select example">
+    <input type="text" class="form-control cc_input-control" id="id_mobile" 
+      aria-describedby="mobilelHelp" placeholder="رقم الموبيل" name="mobile">
+    <select id="id_country" class="form-select cc_input-control"
+      aria-label="Default select example" name="country">
       <!-- <option selected>Open this select menu</option> -->
       {% for country in countries %}
         <option value="{{ country.id }}" {% if country.id == 63 %}selected{% endif %}>{{country.title}} ({{country.code}}+) </option>
@@ -27,18 +33,22 @@
   </div>
 
   <div class="mb-3 input-group">
-    <input type="text" class="form-control cc_input-control" id="id_first-name" aria-describedby="firstNamelHelp" placeholder="الاسم الاول">
-    <input type="text" class="form-control cc_input-control" id="id_last-name" aria-describedby="lastNameHelp" placeholder="اسم العائلة">
+    <input type="text" class="form-control cc_input-control" id="id_first-name"
+      aria-describedby="firstNamelHelp" placeholder="الاسم الاول" name="firstName">
+    <input type="text" class="form-control cc_input-control" id="id_last-name"
+      aria-describedby="lastNameHelp" placeholder="اسم العائلة" name="lastName">
     <!-- <div id="firstNamelHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
   <div class="mb-3">
-    <input type="password" class="form-control cc_input-control" id="id_password" aria-describedby="passwordHelp" placeholder="كلمة المرور">
+    <input type="password" class="form-control cc_input-control" id="id_password"
+      aria-describedby="passwordHelp" placeholder="كلمة المرور" name="password">
     <!-- <div id="passwordHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
   <div class="mb-3">
-    <input type="password" class="form-control cc_input-control" id="id_confirm" aria-describedby="confirmHelp" placeholder="تاكيد كلمة المرور">
+    <input type="password" class="form-control cc_input-control" id="id_confirm"
+      aria-describedby="confirmHelp" placeholder="تاكيد كلمة المرور" name="confirm">
     <!-- <div id="confirmHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
