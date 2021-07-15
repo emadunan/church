@@ -3,19 +3,26 @@
 
 
 {% block content %}
+
+{% if errorMessage %}
+  <div class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+{% endif %}
+
 <form action="{%url 'register' %}" method="POST">
 
   {% csrf_token %}
   
   <div class="mb-3">
     <input type="text" class="form-control cc_input-control" id="id_username"
-      aria-describedby="usernameHelp" placeholder="اسم المستخدم" name="username">
+      aria-describedby="usernameHelp" placeholder="اسم المستخدم*" name="username">
     <div id="usernameHelp" class="form-text">لتسجيل الدخول، يفضل ان يكون باللغة الانجليزية، ويجب عليك عدم الافصاح به!</div>
   </div>
 
   <div class="mb-3">
     <input type="email" class="form-control cc_input-control text-center" id="id_email"
-      aria-describedby="emailHelp" placeholder="البريد الالكتروني" name="e_mail">
+      aria-describedby="emailHelp" placeholder="*البريد الالكتروني" name="e_mail">
     <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
@@ -34,21 +41,21 @@
 
   <div class="mb-3 input-group">
     <input type="text" class="form-control cc_input-control" id="id_first-name"
-      aria-describedby="firstNamelHelp" placeholder="الاسم الاول" name="firstName">
+      aria-describedby="firstNamelHelp" placeholder="الاسم الاول*" name="firstName">
     <input type="text" class="form-control cc_input-control" id="id_last-name"
-      aria-describedby="lastNameHelp" placeholder="اسم العائلة" name="lastName">
+      aria-describedby="lastNameHelp" placeholder="اسم العائلة*" name="lastName">
     <!-- <div id="firstNamelHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
   <div class="mb-3">
     <input type="password" class="form-control cc_input-control" id="id_password"
-      aria-describedby="passwordHelp" placeholder="كلمة المرور" name="password">
+      aria-describedby="passwordHelp" placeholder="كلمة المرور*" name="password">
     <!-- <div id="passwordHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
   <div class="mb-3">
     <input type="password" class="form-control cc_input-control" id="id_confirm"
-      aria-describedby="confirmHelp" placeholder="تاكيد كلمة المرور" name="confirm">
+      aria-describedby="confirmHelp" placeholder="تاكيد كلمة المرور*" name="confirm">
     <!-- <div id="confirmHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 

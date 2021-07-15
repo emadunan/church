@@ -228,6 +228,12 @@ nav ul {
     font-family: cairoRegular;
 }
 
+/* CSS Modifications */
+
+.alert {
+    font-family: cairoRegular;
+}
+
 
 /* MEDIA QUERIES */
 @media(max-width: 35rem) {

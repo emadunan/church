@@ -25,7 +25,7 @@ def view_register(request):
     # Receive data from the post request and assign it into variables
     if request.method == 'POST':
         username = request.POST.get('username')
-        email = request.POST.get('email')
+        email = request.POST.get('e_mail')
         mobile = request.POST.get('mobile')
         country = request.POST.get('country')
         first_name = request.POST.get('firstName')
@@ -33,12 +33,12 @@ def view_register(request):
         password = request.POST.get('password')
         confirm = request.POST.get('confirm')
 
-    # Validating received inputs
-    if (not username or not email or not first_name or not last_name or not password or not confirm):
-        return render(request, "scripture/register.html", {
-            "countries": countries,
-            "errorMessage": "Please fill all required fields"
-        }) 
+        # Validating received inputs
+        if ((not username) or (not email) or (not first_name) or (not last_name) or (not password) or (not confirm)):
+            return render(request, "scripture/register.html", {
+                "countries": countries,
+                "errorMessage": "برجاء ملئ كافة الحقول التى تنتهى بالعلامة (*) لانها ضرورية لانشاء الحساب"
+            }) 
 
         print(username)
         return HttpResponse(username)
