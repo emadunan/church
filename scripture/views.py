@@ -1,6 +1,10 @@
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import check_password, make_password
 from django.shortcuts import render
-from .models import Book, Chapter, Verse, Country
+from django.db.models import Q
+from .models import Book, Chapter, User, Verse, Country
 
 # APP VIEWS.
 def view_index(request):
@@ -13,10 +17,25 @@ def view_guide(request):
 
 def view_login(request):
     if request.method == 'POST':
-        pass
+        # Login the user
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
 
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse("index"))
+        else:
+            return render(request, "scripture/login.html", {
+                "errorMessage": "رجاء التأكد من أسم المستخدم وكلمة المرور، وإعاده المحاولة"
+            })
+    
     else:
         return render(request, "scripture/login.html")
+
+def view_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("index"))
 
 
 def view_register(request):
@@ -27,21 +46,53 @@ def view_register(request):
         username = request.POST.get('username')
         email = request.POST.get('e_mail')
         mobile = request.POST.get('mobile')
-        country = request.POST.get('country')
+        country_id = request.POST.get('country')
         first_name = request.POST.get('firstName')
         last_name = request.POST.get('lastName')
         password = request.POST.get('password')
         confirm = request.POST.get('confirm')
+        sex = request.POST.get('sex')
 
         # Validating received inputs
         if ((not username) or (not email) or (not first_name) or (not last_name) or (not password) or (not confirm)):
             return render(request, "scripture/register.html", {
                 "countries": countries,
                 "errorMessage": "برجاء ملئ كافة الحقول التى تنتهى بالعلامة (*) لانها ضرورية لانشاء الحساب"
-            }) 
+            })
 
-        print(username)
-        return HttpResponse(username)
+        registered_users = User.objects.filter(Q(username=username) | Q(email=email) | Q(mobile=mobile)).count()
+        print("The Total count", registered_users)
+        if registered_users > 0:
+            return render(request, "scripture/register.html", {
+                "countries": countries,
+                "errorMessage": "هذا المستخدم مسجل بالفعل، من فضلك أستخدام (أسم - بريد - موبيل) أخر!"
+            })
+
+        if (password != confirm):
+            return render(request, "scripture/register.html", {
+                "countries": countries,
+                "errorMessage": "رجاء التأكد من توافق كلمة المرور مع حقل التاكيد!"
+            })
+
+
+        # Register New User
+        country = Country.objects.get(id=country_id)
+
+        user = User(
+            username=username,
+            email=email,
+            country=country,
+            mobile=mobile,
+            first_name=first_name,
+            last_name=last_name,
+            password=make_password(password),
+            gender=sex
+        )
+        user.save()
+
+        # Login registered user and redirect him to the index page
+        login(request, user)
+        return HttpResponseRedirect(reverse('index'))
 
     else:
         return render(request, "scripture/register.html", {
@@ -64,12 +115,15 @@ def view_book(request, id):
         "chapters": book.chapter_set.all()
     })
 
+
 def view_search(request):
     if request.method == 'POST':
         criteria = request.POST.get('criteria')
-        criteria = criteria.replace('أ', 'ا').replace('إ', 'ا').replace('آ', 'ا').replace('ة', 'ه').replace('ى', 'ي')
+        criteria = criteria.replace('أ', 'ا').replace('إ', 'ا').replace(
+            'آ', 'ا').replace('ة', 'ه').replace('ى', 'ي')
 
-        fields = [ request.POST.get('books'), request.POST.get('characters'), request.POST.get('blogs') ]
+        fields = [request.POST.get('books'), request.POST.get(
+            'characters'), request.POST.get('blogs')]
         print(fields)
 
         if criteria and 'books' in fields:
