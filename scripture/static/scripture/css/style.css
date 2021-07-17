@@ -245,6 +245,10 @@ nav ul {
     }
 }
 
+@media(max-width: 30rem) {
+    
+}
+
 @media(max-width: 19.5rem) {
     #id_under-construction__perview {
         display: none;
