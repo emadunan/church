@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.deletion import CASCADE
 from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -9,6 +10,8 @@ class User(AbstractUser):
     country = models.ForeignKey('Country', null=True, on_delete=models.SET_NULL)
     mobile = models.CharField(max_length=22, null=True)
     gender = models.CharField(max_length=4, null=True)
+    location = models.OneToOneField('Verse', null=True, on_delete=models.RESTRICT)
+    fav_verses = models.ManyToManyField('Verse', related_name='users_like')
 
 
 class Country(models.Model):

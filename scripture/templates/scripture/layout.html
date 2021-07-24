@@ -67,12 +67,15 @@
                   href="{% url 'places' %}"
                   >الاماكن</a>
               </li>
+              
+              {% if user.is_authenticated %}
               <li class="nav-item">
                 <a
                   class="nav-link {%if '/blogs' in request.path%}active{%endif%}"
                   href="{% url 'blogs' %}"
                   >المدونات</a>
               </li>
+              {% endif %}
 
               <li class="nav-item">
                 <a

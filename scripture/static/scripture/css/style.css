@@ -1,260 +1,267 @@
 /* Font Installation */
 @font-face {
-    font-family: rakkas;
-    src: url('../fonts/Rakkas/Rakkas-Regular.ttf');
+  font-family: rakkas;
+  src: url("../fonts/Rakkas/Rakkas-Regular.ttf");
 }
 
 @font-face {
-    font-family: amiri;
-    src: url('../fonts/Amiri/Amiri-Bold.ttf');
-    font-weight: bold;
+  font-family: amiri;
+  src: url("../fonts/Amiri/Amiri-Bold.ttf");
+  font-weight: bold;
 }
 
 @font-face {
-    font-family: cairoBold;
-    src: url('../fonts/Cairo/Cairo-Bold.ttf');
-    font-weight: bold;
+  font-family: cairoBold;
+  src: url("../fonts/Cairo/Cairo-Bold.ttf");
+  font-weight: bold;
 }
 
 @font-face {
-    font-family: cairoRegular;
-    src: url('../fonts/Cairo/Cairo-Regular.ttf');
-    font-weight: normal;
+  font-family: cairoRegular;
+  src: url("../fonts/Cairo/Cairo-Regular.ttf");
+  font-weight: normal;
 }
-
 
 header {
-    /* -webkit-text-stroke: 2px black; */
-    background-image: url('../img/navbar-img.jpg');
-    z-index: 3;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    font-family: rakkas;
+  /* -webkit-text-stroke: 2px black; */
+  background-image: url("../img/navbar-img.jpg");
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  font-family: rakkas;
 }
 
 footer {
-    background-image: url('../img/navbar-img.jpg');
-    width: 100%;
-    height: 1.5rem;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    font-family: rakkas;
+  background-image: url("../img/navbar-img.jpg");
+  width: 100%;
+  height: 1.5rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  font-family: rakkas;
 }
 
 main {
-    margin-top: 5rem;
-    margin-bottom: 3rem;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
 }
 
 #id_under-construction__perview {
-    min-height: 100%;
+  min-height: 100%;
 }
 
 #id_under-construction__perview img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .navbar-brand {
-    font-size: 2rem;
-    color: #ffffff;
+  font-size: 2rem;
+  color: #ffffff;
 }
 
 .dropdown-menu {
-    min-width: 3rem;
+  min-width: 3rem;
 }
 
 #id_login__link {
-    font-size: 1.5rem;
-    color: rgba(0, 0, 0, 0.55);
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.55);
 }
 
 #id_login__link:hover {
-    color: #000000;
-    cursor: pointer;
+  color: #000000;
+  cursor: pointer;
 }
 
 #id_search__section {
-    background-image: url('../img/navbar-img.jpg');
+  background-image: url("../img/navbar-img.jpg");
 }
 
 #id_search-group {
-    display: flex;
+  display: flex;
 }
 
 #id_search-group button {
-    font-family: rakkas;
-    font-size: 1.4rem;
-    width: 5rem;
+  font-family: rakkas;
+  font-size: 1.4rem;
+  width: 5rem;
 }
 
 #id_search-group input {
-    font-family: amiri;
+  font-family: amiri;
 }
 
 nav ul {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 #id_about-scripture {
-    font-family: rakkas;
+  font-family: rakkas;
 }
 
 #id_about-scripture p {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .books-categories__list li {
-    display: inline;
-    margin-left: 1rem;
-    font-size: 1.1rem;
+  display: inline;
+  margin-left: 1rem;
+  font-size: 1.1rem;
 }
 
-#id_books__title {
-    font-family: rakkas;
+#id_books__title,
+#id_search__title {
+  font-family: rakkas;
 }
 
 .table thead {
-    font-family: rakkas;
-    font-size: 1.3rem;
+  font-family: rakkas;
+  font-size: 1.3rem;
 }
 
 .table tbody {
-    font-family: amiri;
-    font-size: 1.2rem;
+  font-family: amiri;
+  font-size: 1.2rem;
 }
 
 .cc_book-title__link {
-    text-decoration: none;
-    color: black;
-    font-weight: bolder;
+  text-decoration: none;
+  color: black;
+  font-weight: bolder;
 }
 
 .cc_book-title__link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 #id_chapters__list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .cc_chapter-number__link {
-    font-size: 1.7rem;
+  font-size: 1.7rem;
+}
+
+.cc_chapter-title__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.cc_chapter-title__header > h3 {
+    margin-top: 0.5rem;
 }
 
 .cc_chapter__title {
-    font-family: rakkas;
+  font-family: rakkas;
 }
 
 .cc_chapter__title::before {
-    display: block; 
-    content: " "; 
-    margin-top: -5rem; 
-    height: 5rem; 
-    visibility: hidden; 
-    pointer-events: none;
+  display: block;
+  content: " ";
+  margin-top: -5rem;
+  height: 5rem;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .cc_chapter-control__icon:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .cc_chapter__content {
-    text-align: justify;
-    line-height: 220%;
+  text-align: justify;
+  line-height: 220%;
 }
 
 .cc_verse-txt {
-    display: inline;
-    font-family: amiri;
-    font-size: 1.2rem;
+  display: inline;
+  font-family: amiri;
+  font-size: 1.2rem;
 }
 
 .cc_verse-num {
-    font-family: "Amiri";
-    color: #ff0000;
-    font-size: 0.7rem;
-    vertical-align: super;
+  font-family: "Amiri";
+  color: #ff0000;
+  font-size: 0.7rem;
+  vertical-align: super;
 }
 
 #id_under-construction__txt {
-    display: none;
-    text-align: center;
+  display: none;
+  text-align: center;
 }
 
 /* SEARCH SECTION */
 #id_fields-options__checks {
-    font-family: rakkas;
+  font-family: cairoBold;
 }
 
 #id_search-results__preview h5 {
-    font-family: rakkas;
+  font-family: rakkas;
 }
 
 #id_search-results__preview p {
-    font-family: amiri;
+  font-family: amiri;
 }
 
 .cc_verse__link {
-    color: #000000;
-    text-decoration: none;
-    font-size: 1.2rem;
+  color: #000000;
+  text-decoration: none;
+  font-size: 1.2rem;
 }
-
 
 /* Generals */
 .cc_input-label {
-    font-family: cairoBold;
+  font-family: cairoBold;
 }
 
 .cc_input-control {
-    font-family: cairoBold;
+  font-family: cairoBold;
 }
 
 .cc_note-paragraph {
-    font-family: cairoBold;
-    font-size: 0.8rem;
+  font-family: cairoBold;
+  font-size: 0.8rem;
 }
 
 .form-text {
-    font-family: cairoRegular;
+  font-family: cairoRegular;
 }
 
 /* CSS Modifications */
 
 .alert {
-    font-family: cairoRegular;
+  font-family: cairoRegular;
 }
-
 
 /* MEDIA QUERIES */
-@media(max-width: 35rem) {
-    .browser-only {
-        display: none;
-    }
-    #id_books__tbl {
-        text-align: center;
-    }
+@media (max-width: 35rem) {
+  .browser-only {
+    display: none;
+  }
+  #id_books__tbl {
+    text-align: center;
+  }
 }
 
-@media(max-width: 30rem) {
-    
+@media (max-width: 30rem) {
 }
 
-@media(max-width: 19.5rem) {
-    #id_under-construction__perview {
-        display: none;
-    }
+@media (max-width: 19.5rem) {
+  #id_under-construction__perview {
+    display: none;
+  }
 
-    #id_under-construction__txt {
-        display: block;
-    }
+  #id_under-construction__txt {
+    display: block;
+  }
 }

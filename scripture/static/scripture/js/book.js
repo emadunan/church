@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     highlightVerse();
-
 })
 
 
 // JAVASCRIPT FUNCTIONS
+
+// HIGHLIGHT SEARCH RESULT
 function highlightVerse() {
 
     const urlString = window.location.href;
@@ -18,7 +19,6 @@ function highlightVerse() {
 }
 
 // HIGHLIGHT FUNCTIONALITY
-
 function highlightSelection() {
 
     if (window.getSelection().toString() != "") {
@@ -53,7 +53,6 @@ function highlightSelection() {
 }
 
 // EREASE SELECTION
-
 function ereaseAllSelections() {
 
     if (window.getSelection().toString() != "") {
@@ -83,5 +82,9 @@ function ereaseAllSelections() {
         });
     }
 
+}
+
+function setAsLastLocation() {
+    
 }
 

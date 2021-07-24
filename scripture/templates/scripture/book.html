@@ -21,15 +21,15 @@
     <div class="cc_chapter">
 
         <div class="cc_chapter__title" id="chapter-{{chapter.id}}">
-            <h3 class="text-center shadow p-3 mb-3 bg-body rounded">
+            <div class="text-center shadow p-3 mb-3 bg-body rounded cc_chapter-title__header">
                 <div class="cc_book-tools">
                     <span style="float: right;">
-                        <div onclick="highlightSelection()" class="cc_chapter-control__icon me-2">
+                        <div onclick="setAsLastLocation()" class="cc_chapter-control__icon me-2">
                             <img src="{% static 'scripture/img/location.png' %}" alt="Home" style="width: 2rem;">
                         </div>
                     </span>
                     <span style="float: right;">
-                        <div onclick="highlightSelection()" class="cc_chapter-control__icon me-2">
+                        <div onclick="addtoFavoriteSelection()" class="cc_chapter-control__icon me-2">
                             <img src="{% static 'scripture/img/favourite.png' %}" alt="Home" style="width: 2rem;">
                         </div>
                     </span>
@@ -44,14 +44,15 @@
                         </div>
                     </span>
                 </div>
-                
-                 {{book.title}} (الأصحَاحُ {{chapter.title}})
-                <span style="float: left;">
-                    <a href="#">
-                        <img src="{% static 'scripture/img/home_w.png' %}" alt="Home" style="width: 2rem;">
-                    </a>
-                </span>
-            </h3>
+                <h3>{{book.title}} (الأصحَاحُ {{chapter.title}})</h3>
+                <div class="cc_book-tools">
+                    <span style="float: left;">
+                        <a href="#">
+                            <img src="{% static 'scripture/img/home_w.png' %}" alt="Home" style="width: 2rem;">
+                        </a>
+                    </span>
+                </div>
+            </div>
         </div>
 
         <div class="cc_chapter__content mb-5">
