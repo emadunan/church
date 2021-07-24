@@ -2,9 +2,12 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password, make_password
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.db.models import Q
 from .models import Book, Chapter, User, Verse, Country
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 # APP VIEWS.
 def view_index(request):
@@ -163,3 +166,35 @@ def view_blogs(request):
 
 def view_blog(request, id):
     return render(request, "scripture/blog.html")
+
+@login_required
+@csrf_exempt
+def view_setLocation(request):
+    # Get the verse from request
+    id = request.body
+    verse = Verse.objects.get(id=int(id))
+
+    # Get the logged user and update his location
+    user = request.user
+    user.location = verse
+    user.save()
+    return HttpResponse(id, status=200)
+
+def view_getUserState(request):
+    user = request.user
+
+    return HttpResponse(json.dumps({
+        'location': user.location.id
+    }))
+
+def view_getCurrentLocation(request):
+    user = request.user
+    chapter = user.location.chapter
+    book = chapter.book
+    
+    return HttpResponse(json.dumps({
+        'vlocation': user.location.id,
+        'chapter': chapter.id,
+        'book': book.id
+    }))
+    

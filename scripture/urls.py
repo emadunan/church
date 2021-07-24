@@ -19,5 +19,10 @@ urlpatterns = [
     path('places/<int:id>', views.view_place, name='place'),
 
     path('blogs', views.view_blogs, name='blogs'),
-    path('blogs/<int:id>', views.view_blog, name='blog')
+    path('blogs/<int:id>', views.view_blog, name='blog'),
+
+    # API End Points
+    path('setLocation', views.view_setLocation, name='setLocation'),
+    path('getUserState', views.view_getUserState, name='getUserState'),
+    path('getCurrentLocation', views.view_getCurrentLocation, name='getCurrentLocation')
 ]

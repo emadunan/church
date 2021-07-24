@@ -97,18 +97,23 @@
 
             {% if user.is_authenticated %}
             <div class="btn-group ms-auto">
-              <button
-                type="button"
-                class="btn btn-dark dropdown-toggle"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              > مرحباً {{user.first_name}} {{user.last_name}}
-              </button>
-              <ul class="dropdown-menu dropdown-menu-start">
-                <li><a class="dropdown-item" href="#">الإعدادات</a></li>
-                <li><a class="dropdown-item" href="#">البروفيل</a></li>
-                <li><a class="dropdown-item" href="{% url 'logout' %}">خروج</a></li>
-              </ul>
+              <div id="id_user-location__flag" onclick="redirectToCurrentLoc()">
+                <img src="{% static 'scripture/img/achievement.png' %}" alt="Home" class="me-3">
+              </div>
+              <div style="margin: auto;">
+                <button
+                  type="button"
+                  class="btn btn-dark dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                > مرحباً {{user.first_name}} {{user.last_name}}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-start">
+                  <li><a class="dropdown-item" href="#">الإعدادات</a></li>
+                  <li><a class="dropdown-item" href="#">البروفيل</a></li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">خروج</a></li>
+                </ul>
+              </div>
             </div>
             {% else %}
             <a
