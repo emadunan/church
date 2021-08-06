@@ -97,6 +97,9 @@
 
             {% if user.is_authenticated %}
             <div class="btn-group ms-auto">
+              <div id="id_user-favorites__flag" onclick="redirectToCurrentLoc()">
+                <img src="{% static 'scripture/img/favorite-for-nav.png' %}" alt="Home" class="me-3">
+              </div>
               <div id="id_user-location__flag" onclick="redirectToCurrentLoc()">
                 <img src="{% static 'scripture/img/achievement.png' %}" alt="Home" class="me-3">
               </div>

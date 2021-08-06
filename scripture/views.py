@@ -10,6 +10,8 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 # APP VIEWS.
+
+
 def view_index(request):
     return render(request, "scripture/index.html")
 
@@ -32,9 +34,10 @@ def view_login(request):
             return render(request, "scripture/login.html", {
                 "errorMessage": "رجاء التأكد من أسم المستخدم وكلمة المرور، وإعاده المحاولة"
             })
-    
+
     else:
         return render(request, "scripture/login.html")
+
 
 def view_logout(request):
     logout(request)
@@ -63,7 +66,8 @@ def view_register(request):
                 "errorMessage": "برجاء ملئ كافة الحقول التى تنتهى بالعلامة (*) لانها ضرورية لانشاء الحساب"
             })
 
-        registered_users = User.objects.filter(Q(username=username) | Q(email=email) | Q(mobile=mobile)).count()
+        registered_users = User.objects.filter(
+            Q(username=username) | Q(email=email) | Q(mobile=mobile)).count()
         print("The Total count", registered_users)
         if registered_users > 0:
             return render(request, "scripture/register.html", {
@@ -76,7 +80,6 @@ def view_register(request):
                 "countries": countries,
                 "errorMessage": "رجاء التأكد من توافق كلمة المرور مع حقل التاكيد!"
             })
-
 
         # Register New User
         country = Country.objects.get(id=country_id)
@@ -167,6 +170,7 @@ def view_blogs(request):
 def view_blog(request, id):
     return render(request, "scripture/blog.html")
 
+
 @login_required
 @csrf_exempt
 def view_setLocation(request):
@@ -180,6 +184,7 @@ def view_setLocation(request):
     user.save()
     return HttpResponse(id, status=200)
 
+
 def view_getUserState(request):
     user = request.user
 
@@ -187,14 +192,33 @@ def view_getUserState(request):
         'location': user.location.id
     }))
 
+
+@login_required
 def view_getCurrentLocation(request):
     user = request.user
     chapter = user.location.chapter
     book = chapter.book
-    
+
     return HttpResponse(json.dumps({
         'vlocation': user.location.id,
         'chapter': chapter.id,
         'book': book.id
     }))
+
+
+@login_required
+@csrf_exempt
+def view_addVerseToFavorites(request):
+    user = request.user
+
+    # Extract the verse
+    response = json.loads(request.body)
+    print(response['items'])
+    versesId = response['items']
+    for verseId in versesId:
+        if verseId.isdigit():
+            verse = Verse.objects.get(pk=int(verseId))
+            user.fav_verses.add(verse)
     
+    return HttpResponse('Ok!')
+

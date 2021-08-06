@@ -24,5 +24,6 @@ urlpatterns = [
     # API End Points
     path('setLocation', views.view_setLocation, name='setLocation'),
     path('getUserState', views.view_getUserState, name='getUserState'),
-    path('getCurrentLocation', views.view_getCurrentLocation, name='getCurrentLocation')
+    path('getCurrentLocation', views.view_getCurrentLocation, name='getCurrentLocation'),
+    path('addVerseToFavorites', views.view_addVerseToFavorites, name='addVerseToFavorites')
 ]

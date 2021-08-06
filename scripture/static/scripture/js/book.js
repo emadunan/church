@@ -21,6 +21,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // JAVASCRIPT FUNCTIONS
 
+function addtoFavoriteSelection() {
+  if (window.getSelection().toString() != "") {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+
+    var allSelected = [];
+
+    if (!range.commonAncestorContainer.innerHTML) {
+      var allWithinRangeParent = [range.commonAncestorContainer.parentElement];
+      console.log(allWithinRangeParent);
+    } else {
+      var allWithinRangeParent =
+        range.commonAncestorContainer.getElementsByTagName("*");
+    }
+
+    for (var i = 0, el; (el = allWithinRangeParent[i]); i++) {
+      // The second parameter says to include the element
+      // even if it's not fully selected
+      if (selection.containsNode(el, true) && el.className === "cc_verse-txt") {
+        elId = el.id.substr(6);
+        allSelected.push(elId);
+      }
+    }
+
+    fetch('/addVerseToFavorites', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+      body: JSON.stringify({'items': allSelected}) 
+    });
+
+    
+  }
+}
+
 // HIGHLIGHT SEARCH RESULT
 function highlightVerse() {
   const urlString = window.location.href;
@@ -132,21 +168,6 @@ function setAsLastLocation() {
       if (oldFlag) oldFlag.remove();
 
       showFlag(selectedLocation);
-
-    //   locationFlag = document.createElement("img");
-    //   locationFlag.id = "id_location-flag";
-    //   locationFlag.src = "/static/scripture/img/achievement.png";
-    //   locationFlag.style.width = "2rem";
-
-    //   // Add flaged Class
-    //   selectedLocation.classList.add("flagged");
-
-    //   //
-    //   selectedLocation.parentElement.insertBefore(
-    //     locationFlag,
-    //     selectedLocation
-    //   );
-    //   selectedLocation.style.borderBottom = "1px solid #000";
     });
   }
 }

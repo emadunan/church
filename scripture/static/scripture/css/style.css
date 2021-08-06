@@ -78,15 +78,15 @@ main {
   cursor: pointer;
 }
 
+#id_user-favorites__flag img {
+  width: 2.5rem;
+}
+
 #id_user-location__flag img {
     width: 2.5rem;
 }
 
-#id_user-location__flag img:hover {
-    width: 3.5rem;
-}
-
-#id_user-location__flag:hover {
+#id_user-location__flag:hover, #id_user-favorites__flag:hover {
     cursor: pointer;
 }
 
