@@ -231,6 +231,21 @@ nav ul {
   font-size: 1.2rem;
 }
 
+#id_fav-verses__perview {
+  font-family: amiri;
+}
+
+#id_fav-verses__perview li {
+  border: olive 1px solid;
+  border-radius: 0.3rem;
+  margin: 0.3rem;
+  padding-top: 0.5rem;
+  padding-right: 1rem;
+  padding-left: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
 /* Generals */
 .cc_input-label {
   font-family: cairoBold;

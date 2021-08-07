@@ -25,5 +25,8 @@ urlpatterns = [
     path('setLocation', views.view_setLocation, name='setLocation'),
     path('getUserState', views.view_getUserState, name='getUserState'),
     path('getCurrentLocation', views.view_getCurrentLocation, name='getCurrentLocation'),
-    path('addVerseToFavorites', views.view_addVerseToFavorites, name='addVerseToFavorites')
+    path('addVerseToFavorites', views.view_addVerseToFavorites, name='addVerseToFavorites'),
+    path('getFavVersesIdForUser', views.view_getFavVersesIdForUser, name='getFavVersesIdForUser'),
+    path('getFavVersesForUser', views.view_getFavVersesForUser, name='getFavVersesForUser'),
+    path('removeVerseFromFav/<int:id>', views.view_removeVerseFromFav, name='removeVerseFromFav'),
 ]

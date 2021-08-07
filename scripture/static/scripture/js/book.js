@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return response.json();
     })
     .then((responseData) => {
-      console.log(responseData);
+      // console.log(responseData);
       const flagVerse = document.querySelector(
         `#verse-${responseData.location}`
       );
@@ -17,7 +17,33 @@ document.addEventListener("DOMContentLoaded", function () {
         showFlag(flagVerse);
       }
     });
+
+  fetch("/getFavVersesIdForUser")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Can't return your fav verses");
+      }
+      return response.json();
+    })
+    .then((responseData) => {
+      HighlightUserStatus(responseData);
+    });
 });
+
+//getFavVersesForUser
+
+function HighlightUserStatus(responseData) {
+  console.log(responseData);
+
+  responseData.items.forEach((id) => {
+    favVerse = document.getElementById(`verse-${id}`);
+
+    if (favVerse) {
+      favVerse.style.backgroundColor = "#e9ff32";
+    }
+
+  });
+}
 
 // JAVASCRIPT FUNCTIONS
 
@@ -45,15 +71,25 @@ function addtoFavoriteSelection() {
       }
     }
 
-    fetch('/addVerseToFavorites', {
-      method: 'POST',
+    fetch("/addVerseToFavorites", {
+      method: "POST",
       headers: {
-        'Content-Type': 'multipart/form-data'
+        "Content-Type": "multipart/form-data",
       },
-      body: JSON.stringify({'items': allSelected}) 
-    });
+      body: JSON.stringify({ items: allSelected }),
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to add your Favorites!");
+        return response.json();
+      })
+      .then((responseData) => {
+        console.log(responseData);
 
-    
+        responseData.items.forEach((id) => {
+          document.getElementById(`verse-${id}`).style.backgroundColor =
+            "#e9ff32";
+        });
+      });
   }
 }
 

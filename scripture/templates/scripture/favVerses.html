@@ -1,0 +1,42 @@
+{% extends 'scripture/layout.html' %}
+{% load static %}
+{% load scripture_extras %}
+
+{% block content %}
+<div id="id_books__title">
+    <h1 class="text-right shadow-lg p-3 mb-5 bg-body rounded">
+        قائمة الأعداد المفضلة:
+    </h1>
+</div>
+
+<div id="id_fav-verses__perview">
+    {% if verses %}
+    <ul>
+        {% for verse in verses %}
+        <li>
+            <div>
+                <a href="{% url 'book' verse.chapter.book.id %}?verse={{verse.id}}#chapter-{{verse.chapter.id}}"
+                    target="_blank" class="cc_verse__link">
+                    <p>
+                        <span style="white-space: nowrap">
+                            [{{forloop.counter|arnum}}]
+                        </span>
+                        {{verse.textf}}
+                        <span style="white-space: nowrap">
+                            ({{verse.chapter.book.title}} {{verse.chapter.number|arnum}} : {{verse.number|arnum}})
+                        </span>
+                    </p>
+                </a>
+            </div>
+            <div>
+                <a class="btn btn-danger" href="{% url 'removeVerseFromFav' verse.id %}">X</a>
+            </div>
+
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>لا يوجد أى أعداد بالقائمة!</p>
+    {% endif %}
+</div>
+{% endblock %}

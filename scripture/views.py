@@ -211,14 +211,51 @@ def view_getCurrentLocation(request):
 def view_addVerseToFavorites(request):
     user = request.user
 
-    # Extract the verse
+    # Extract the verses id from the request's body
     response = json.loads(request.body)
-    print(response['items'])
     versesId = response['items']
+
+    # Save the favorites in the Db
     for verseId in versesId:
         if verseId.isdigit():
             verse = Verse.objects.get(pk=int(verseId))
             user.fav_verses.add(verse)
     
-    return HttpResponse('Ok!')
+    return HttpResponse(json.dumps({
+        "items": response['items']
+    }))
+
+
+def view_getFavVersesIdForUser(request):
+    user = request.user
+    favVerses = user.fav_verses.all()
+
+    # Extract verses' id and send them in the response
+    items = []
+    for verse in favVerses:
+        print(verse)
+        items.append(verse.id)
+    
+    return HttpResponse(json.dumps({
+        "items": items
+    }))
+
+
+def view_getFavVersesForUser(request):
+    user = request.user
+    favVerses = user.fav_verses.all()
+
+    return render(request, "scripture/favVerses.html", {
+        "verses": favVerses
+    })
+
+
+def view_removeVerseFromFav(request, id):
+    user = request.user
+    verse = Verse.objects.get(pk=id)
+
+    if (verse):
+        user.fav_verses.remove(verse)
+    
+    return HttpResponseRedirect(reverse('getFavVersesForUser'))
 
