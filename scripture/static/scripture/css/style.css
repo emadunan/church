@@ -213,8 +213,16 @@ nav ul {
 }
 
 /* SEARCH SECTION */
+#id_search-query__select {
+  width: 13rem;
+  margin-left: 1rem;
+}
+
 #id_fields-options__checks {
   font-family: cairoBold;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 #id_search-results__preview h5 {

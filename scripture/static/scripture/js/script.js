@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('here')
-})
+    
+});
 
 function redirectToCurrentLoc() {
     fetch("/getCurrentLocation")

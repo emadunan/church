@@ -8,6 +8,7 @@ from django.db.models import Q
 from .models import Book, Chapter, User, Verse, Country
 from django.views.decorators.csrf import csrf_exempt
 import json
+import functools
 
 # APP VIEWS.
 
@@ -130,12 +131,34 @@ def view_search(request):
 
         fields = [request.POST.get('books'), request.POST.get(
             'characters'), request.POST.get('blogs')]
-        print(fields)
 
-        if criteria and 'books' in fields:
+        search_type = request.POST.get('searchType')
+
+        # Searching in Books
+        verses = ''
+        if criteria and 'books' in fields and search_type == 'ANY':
+            words = criteria.split(' ')
+            verses = Verse.objects.filter(functools.reduce(lambda x, y: x | y, [Q(textq__contains=word) for word in words]))
+
+        elif criteria and 'books' in fields and search_type == 'ALL':
+            verses = Verse.objects.all()
+            words = criteria.split(' ')
+            for word in words:
+                verses = verses.filter(textq__contains=word)
+
+        elif criteria and 'books' in fields and search_type == 'FULL':
             verses = Verse.objects.filter(textq__contains=criteria)
+
+        elif criteria and 'books' in fields and search_type == 'EXACT':
+            verses = Verse.objects.filter(Q(textq__contains=f" {criteria} ") | Q(textq__contains=f" {criteria}.") | Q(
+                textq__contains=f" {criteria}!") | Q(textq__contains=f" {criteria}?"))
+
         else:
             verses = None
+
+        # Search in Characters  TODO
+
+        # Search in Places TODO
 
         return render(request, "scripture/search.html", {
             "verses": verses,
@@ -220,7 +243,7 @@ def view_addVerseToFavorites(request):
         if verseId.isdigit():
             verse = Verse.objects.get(pk=int(verseId))
             user.fav_verses.add(verse)
-    
+
     return HttpResponse(json.dumps({
         "items": response['items']
     }))
@@ -235,7 +258,7 @@ def view_getFavVersesIdForUser(request):
     for verse in favVerses:
         print(verse)
         items.append(verse.id)
-    
+
     return HttpResponse(json.dumps({
         "items": items
     }))
@@ -256,6 +279,5 @@ def view_removeVerseFromFav(request, id):
 
     if (verse):
         user.fav_verses.remove(verse)
-    
-    return HttpResponseRedirect(reverse('getFavVersesForUser'))
 
+    return HttpResponseRedirect(reverse('getFavVersesForUser'))
