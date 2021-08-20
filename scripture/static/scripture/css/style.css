@@ -278,6 +278,10 @@ nav ul {
   font-family: cairoRegular;
 }
 
+.highlight {
+  background-color: yellow;
+}
+
 /* MEDIA QUERIES */
 @media (max-width: 35rem) {
   .browser-only {

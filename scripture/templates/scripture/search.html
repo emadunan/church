@@ -73,7 +73,7 @@
         <li>
             <a href="{% url 'book' verse.chapter.book.id %}?verse={{verse.id}}#chapter-{{verse.chapter.id}}"
                 target="_blank" class="cc_verse__link">
-                <p>{{verse.textf}} <span style="white-space: nowrap;">({{verse.chapter.book.title}}
+                <p class="cc_verse-textf">{{verse.textf}} <span style="white-space: nowrap;">({{verse.chapter.book.title}}
                         {{verse.chapter.number|arnum}} : {{verse.number|arnum}})</span></p>
             </a>
         </li>
