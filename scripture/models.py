@@ -87,4 +87,4 @@ class Blog(models.Model):
     for_publish = models.BooleanField()
     reviewed = models.BooleanField()
     written_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    # last_edited = models.DateTimeField(auto_now=True)
+    last_edited = models.DateTimeField(auto_now=True)
