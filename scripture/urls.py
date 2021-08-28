@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.view_index, name='index'),
+    path('', views.view_blogs, name='blogs'),
     path('register', views.view_register, name='register'),
     path('login', views.view_login, name='login'),
     path('logout', views.view_logout, name='logout'),
@@ -20,6 +20,7 @@ urlpatterns = [
 
     path('blogs', views.view_blogs, name='blogs'),
     path('blogs/<int:id>', views.view_blog, name='blog'),
+    path('blog-add', views.view_blog_add, name='blog-add'),
 
     # API End Points
     path('setLocation', views.view_setLocation, name='setLocation'),

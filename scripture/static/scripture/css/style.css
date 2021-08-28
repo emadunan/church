@@ -40,6 +40,9 @@ footer {
   left: 0;
   bottom: 0;
   font-family: rakkas;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 main {
@@ -127,7 +130,9 @@ nav ul {
 }
 
 #id_books__title,
-#id_search__title {
+#id_search__title,
+#id_blogs__title,
+#id_blog-add__title {
   font-family: rakkas;
 }
 
@@ -252,6 +257,16 @@ nav ul {
   padding-left: 0.5rem;
   display: flex;
   justify-content: space-between;
+}
+
+/* Blogs Section */
+#id_blog-add__cont label {
+  font-family: cairoBold;
+}
+
+#id_blog-add__cont input,
+#id_blog-add__cont textarea {
+  font-family: cairoRegular;
 }
 
 /* Generals */

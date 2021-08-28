@@ -27,7 +27,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light py-0">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'index' %}">الكتاب المقدس</a>
+          <a class="navbar-brand" href="/">الكتاب المقدس</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -41,6 +41,14 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a
+                  class="nav-link {%if '/blogs' in request.path%}active{%endif%}"
+                  href="{% url 'blogs' %}"
+                  >المدونات</a>
+              </li>
+              {% endif %}
               <li class="nav-item">
                 <a
                   class="nav-link {%if '/search' in request.path%}active{%endif%}"
@@ -67,15 +75,6 @@
                   href="{% url 'places' %}"
                   >الاماكن</a>
               </li>
-              
-              {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a
-                  class="nav-link {%if '/blogs' in request.path%}active{%endif%}"
-                  href="{% url 'blogs' %}"
-                  >المدونات</a>
-              </li>
-              {% endif %}
 
               <li class="nav-item">
                 <a
@@ -98,7 +97,7 @@
             {% if user.is_authenticated %}
             <div class="btn-group ms-auto">
               <a id="id_user-favorites__flag" href="{% url 'getFavVersesForUser' %}">
-                <img src="{% static 'scripture/img/favorite-for-nav.png' %}" alt="Home" class="me-3">
+                <img src="{% static 'scripture/img/bookmark.png' %}" alt="Home" class="me-3">
               </a>
               <div id="id_user-location__flag" onclick="redirectToCurrentLoc()">
                 <img src="{% static 'scripture/img/achievement.png' %}" alt="Home" class="me-3">
@@ -137,7 +136,9 @@
 
     <!-- THE FOOTER SECTION -->
     <footer class="text-center">
-      <p>الكتاب المقدس الإلكتروني @ 2020</p>
+      <p class="ms-2"> الاصدار: رقم (١) بتاريخ (٩/ ٢٠٢١)</p>
+      <p>منصة الكتاب المقدس الإلكتروني @ 2020</p>
+      <p class="me-2">About us</p>
     </footer>
   </body>
 </html>

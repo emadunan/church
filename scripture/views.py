@@ -1,3 +1,4 @@
+from django.http import request
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
@@ -5,7 +6,7 @@ from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.db.models import Q
-from .models import Book, Chapter, User, Verse, Country
+from .models import Blog, Book, Chapter, User, Verse, Country
 from django.views.decorators.csrf import csrf_exempt
 import json
 import functools
@@ -16,6 +17,9 @@ import functools
 def view_index(request):
     return render(request, "scripture/index.html")
 
+
+def view_main(request):
+    return render(request, "scripture/main.html")
 
 def view_guide(request):
     return render(request, "scripture/guide.html")
@@ -30,7 +34,7 @@ def view_login(request):
 
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("blogs"))
         else:
             return render(request, "scripture/login.html", {
                 "errorMessage": "رجاء التأكد من أسم المستخدم وكلمة المرور، وإعاده المحاولة"
@@ -187,11 +191,28 @@ def view_place(request, id):
 
 
 def view_blogs(request):
-    return render(request, "scripture/blogs.html")
+    blogs = Blog.objects.all()
+
+    return render(request, "scripture/blogs.html", {
+        "blogs": blogs
+    })
 
 
 def view_blog(request, id):
     return render(request, "scripture/blog.html")
+
+def view_blog_add(request):
+    if request.method == "POST":
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        publish = request.POST.get('publish') == "PUB"
+
+        blog = Blog(title=title, content=content, for_publish=publish, reviewed=True, written_by=request.user)
+        blog.save()
+        return HttpResponseRedirect(reverse('blogs'))
+
+    else:
+        return render(request, "scripture/blogadd.html")
 
 
 @login_required

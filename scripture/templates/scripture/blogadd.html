@@ -1,0 +1,40 @@
+{% extends 'scripture/layout.html' %}
+{% load static %}
+{% load scripture_extras %}
+
+{% block content %}
+<div id="id_blog-add__title">
+    <h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">اضافة مدونة</h1>
+</div>
+
+<div id="id_blog-add__cont">
+    <form action="{%url 'blog-add' %}" method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="formControlTitle" class="form-label">عنوان المدونة</label>
+            <input type="text" class="form-control" id="formControlTitle" name="title">
+        </div>
+        <div class="mb-3">
+            <label for="formControlContent" class="form-label">محتوى المدونة</label>
+            <textarea class="form-control" id="formControlContent" rows="12" name="content"></textarea>
+        </div>
+        <div id="usernameHelp" class="form-text">عند الضغط على (حفظ) سيتم حفظ المدونة بسجل المدونات الخاص بك. إن كنت تريد
+            مشاركتها مع جميع المستخدمين، يمكنك تحديد (للنشر) وسيتم مراجعة المنشور أولا من جانب فريق إدارة المحتوى ونشرة
+            فى
+            اقرب وقت.. خالص التقدير لمشاركتكم!</div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="PUB" id="flexCheckpublish" name="publish">
+            <label class="form-check-label" for="flexCheckpublish">
+                للنشر
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-success cc_input-label mt-4">
+            حفظ&nbsp&nbsp&nbsp&nbsp
+            <img src="{% static 'scripture/img/add_w.png' %}" alt="Login" style="width: 2rem;"/>
+          </button>
+    </form>
+</div>
+
+{% endblock %}

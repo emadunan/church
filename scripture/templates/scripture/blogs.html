@@ -4,15 +4,39 @@
 
 
 {% block content %}
-    <div id="id_books__title">
-        <h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">مدونات المستخدمين</h1>
-    </div>
+<div id="id_blogs__title">
+    <h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">
+        <span style="float:right">
+            <a href="#">
+                <img src="{% static 'scripture/img/funnel.png' %}" alt="Home" style="width: 2rem;">
+            </a>
+        </span>
+        مدونات المستخدمين
+        <span style="float: left;">
+            <a href="{% url 'blog-add' %}">
+                <img src="{% static 'scripture/img/add.png' %}" alt="Home" style="width: 2rem;">
+            </a>
+        </span>
+        
+    </h1>
+</div>
 
-    <div id="id_under-construction__perview">
-        <img src="{% static 'scripture/img/under_construction.jpeg' %}" alt="Under Construction, COMMING SOON!">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+    
+    {% for blog in blogs %}
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title text-center">{{blog.title}}</h5>
+                <p class="card-text">{{blog.content}}</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">{{blog.written_by.first_name}} {{blog.written_by.last_name}} (11\4\2021)</small>
+            </div>
+        </div>
     </div>
-    <div id="id_under-construction__txt">
-        <h4>Under Construction</h4>
-        <h3>COMMING SOON</h3>
-    </div>
+    {% endfor %}
+
+</div>
 {% endblock %}

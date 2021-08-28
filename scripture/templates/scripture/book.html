@@ -23,6 +23,8 @@
         <div class="cc_chapter__title" id="chapter-{{chapter.id}}">
             <div class="text-center shadow p-3 mb-3 bg-body rounded cc_chapter-title__header">
                 <div class="cc_book-tools">
+                    
+                    {% if user.is_authenticated %}
                     <span style="float: right;">
                         <div onclick="setAsLastLocation()" class="cc_chapter-control__icon me-2">
                             <img src="{% static 'scripture/img/location.png' %}" alt="Home" style="width: 2rem;">
@@ -33,6 +35,9 @@
                             <img src="{% static 'scripture/img/favourite.png' %}" alt="Home" style="width: 2rem;">
                         </div>
                     </span>
+                    {% endif %}
+                        
+                    
                     <span style="float: right;">
                         <div onclick="highlightSelection()" class="cc_chapter-control__icon me-1">
                             <img src="{% static 'scripture/img/highlighter.png' %}" alt="Home" style="width: 2rem;">
