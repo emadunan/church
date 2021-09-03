@@ -2,7 +2,6 @@
 {% load static %}
 
 
-
 {% block content %}
 <div id="id_blogs__title">
     <h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">
@@ -26,13 +25,21 @@
     
     {% for blog in blogs %}
     <div class="col">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title text-center">{{blog.title}}</h5>
-                <p class="card-text">{{blog.content}}</p>
+        <div class="card h-100 border-warning cc_blog__card">
+            <div class="card-header bg-transparent border-success">
+                <h5>{{blog.title}}</h5>
+                <form action="{% url 'blog' blog.id %}" method="get">
+                    <button type="submit" class="btn btn-sm btn-success">قراءة</button>
+                </form>
             </div>
-            <div class="card-footer">
-                <small class="text-muted">{{blog.written_by.first_name}} {{blog.written_by.last_name}} ({{blog.last_edited}})</small>
+            <div class="card-body">
+                <h5 class="card-title text-center"></h5>
+                <p class="card-text">{{blog.content|linebreaks|slice:":700"}}...</p>
+            </div>
+            <div class="card-footer border-warning">
+                <small class="text-muted">{{blog.written_by.first_name}} {{blog.written_by.last_name}}</small>
+                <small class="text-muted">{{blog.last_edited}}</small>
+                <button class="btn btn-sm btn-outline-warning"><i class="bi bi-pen"></i></button>
             </div>
         </div>
     </div>

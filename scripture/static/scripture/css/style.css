@@ -269,6 +269,43 @@ nav ul {
   font-family: cairoRegular;
 }
 
+.cc_blog__card h5 {
+  font-family: rakkas;
+}
+
+.cc_blog__card p {
+  font-family: amiri;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.cc_blog__card small {
+  font-family: cairoRegular;
+}
+
+.cc_blog__card .card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cc_blog__card button {
+  font-family: cairoRegular;
+}
+
+.cc_blog__card .card-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#id_blog__paragraph {
+  font-family: amiri;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 /* Generals */
 .cc_input-label {
   font-family: cairoBold;

@@ -1,0 +1,20 @@
+{% extends 'scripture/layout.html' %}
+{% load static %}
+{% load scripture_extras %}
+
+{% block content %}
+<div id="id_blog-add__title">
+    <h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">
+        <span style="float:right">
+            <a href="/blogs">
+                <img src="{% static 'scripture/img/right-arrow.png' %}" alt="Home" style="width: 2rem;">
+            </a>
+        </span>
+        {{blog.title}}
+    </h1>
+</div>
+<div id="id_blog__paragraph">
+    <p class="cc_blog__paragraph">{{blog.content|linebreaks}}</p>
+</div>
+
+{% endblock %}

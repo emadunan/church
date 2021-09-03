@@ -199,7 +199,10 @@ def view_blogs(request):
 
 
 def view_blog(request, id):
-    return render(request, "scripture/blog.html")
+    blog = Blog.objects.get(pk=id)
+    return render(request, "scripture/blog.html", {
+        "blog": blog
+    })
 
 def view_blog_add(request):
     if request.method == "POST":
