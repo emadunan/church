@@ -132,7 +132,8 @@ nav ul {
 #id_books__title,
 #id_search__title,
 #id_blogs__title,
-#id_blog-add__title {
+#id_blog-add__title,
+#id_blog-edit__title {
   font-family: rakkas;
 }
 
@@ -260,12 +261,15 @@ nav ul {
 }
 
 /* Blogs Section */
-#id_blog-add__cont label {
+#id_blog-add__cont label,
+#id_blog-edit__cont label {
   font-family: cairoBold;
 }
 
 #id_blog-add__cont input,
-#id_blog-add__cont textarea {
+#id_blog-add__cont textarea,
+#id_blog-edit__cont input,
+#id_blog-edit__cont textarea{
   font-family: cairoRegular;
 }
 
@@ -304,6 +308,17 @@ nav ul {
   font-family: amiri;
   text-align: justify;
   text-justify: inter-word;
+}
+
+#id_blogs__filter-from {
+  display: flex;
+  justify-content: space-between;
+  background-image: url("../img/navbar-img.jpg");
+}
+
+#id_blog__filters-criteria {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* Generals */

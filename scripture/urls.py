@@ -21,6 +21,8 @@ urlpatterns = [
     path('blogs', views.view_blogs, name='blogs'),
     path('blogs/<int:id>', views.view_blog, name='blog'),
     path('blog-add', views.view_blog_add, name='blog-add'),
+    path('blog-edit/<int:id>', views.view_blog_edit, name='blog-edit'),
+    path('blog-del/<int:id>', views.view_blog_del, name='blog-del'),
 
     # API End Points
     path('setLocation', views.view_setLocation, name='setLocation'),

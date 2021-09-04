@@ -10,10 +10,10 @@ from .models import Blog, Book, Chapter, User, Verse, Country
 from django.views.decorators.csrf import csrf_exempt
 import json
 import functools
+import datetime;
+
 
 # APP VIEWS.
-
-
 def view_index(request):
     return render(request, "scripture/index.html")
 
@@ -216,6 +216,40 @@ def view_blog_add(request):
 
     else:
         return render(request, "scripture/blogadd.html")
+
+
+def view_blog_edit(request, id):
+    if request.method == "POST":
+        # Receive the data from the request body
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        publish = request.POST.get('publish') == "PUB"
+        print(title, content, publish)
+
+        # Get the targeted blog, and update it's values
+        blog = Blog.objects.get(pk=id)
+        blog.title = title
+        blog.content = content
+        blog.for_publish = publish
+        blog.last_edited = datetime.datetime.now()
+
+        blog.save()
+        return HttpResponseRedirect(reverse('blogs'))
+        # return HttpResponseRedirect(reverse('blog-edit', args=(id,)))
+
+    else:
+        selectedBlog = Blog.objects.get(pk=id)
+        return render(request, 'scripture/blogedit.html', {
+            "blog": selectedBlog
+        })
+
+
+def view_blog_del(request, id):
+    blog = Blog.objects.get(pk=id)
+    blog.delete()
+    return HttpResponseRedirect(reverse('blogs'))
+
+
 
 
 @login_required

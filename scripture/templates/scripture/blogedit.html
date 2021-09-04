@@ -1,0 +1,51 @@
+{% extends 'scripture/layout.html' %}
+{% load static %}
+{% load scripture_extras %}
+
+{% block script %}
+<script src="{% static 'scripture/js/blogedit.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="id_blog-edit__title">
+    <h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">
+        <span style="float:right">
+            <a href="/blogs">
+                <img src="{% static 'scripture/img/right-arrow.png' %}" alt="Home" style="width: 2rem;">
+            </a>
+        </span>
+        تعديل منشور
+    </h1>
+</div>
+
+<div id="id_blog-edit__cont">
+    <form action="{%url 'blog-edit' blog.id%}" method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="formControlTitle" class="form-label">عنوان المنشور</label>
+            <input type="text" class="form-control" id="formControlTitle" name="title" value="{{blog.title}}">
+        </div>
+        <div class="mb-3">
+            <label for="formControlContent" class="form-label">محتوى المنشور</label>
+            <textarea class="form-control" id="formControlContent" rows="12" name="content">{{blog.content}}</textarea>
+        </div>
+        <div id="usernameHelp" class="form-text">عند الضغط على (حفظ) سيتم حفظ المنشور بسجل المنشورات الخاص بك. إن كنت تريد
+            مشاركته مع جميع المستخدمين، يمكنك تحديد (للنشر) وسيتم مراجعة المنشور أولا من جانب فريق إدارة المحتوى ونشرة
+            فى
+            اقرب وقت.. خالص التقدير لمشاركتكم!</div>
+        <div class="form-check">
+            <input data-checkValue="{{blog.for_publish}}" class="form-check-input" type="checkbox" value="PUB" id="flexCheckpublish_edit" name="publish">
+            <label class="form-check-label" for="flexCheckpublish_edit">
+                للنشر
+            </label>
+        </div>
+        <a class="btn btn-danger cc_input-label mt-4" href="{% url 'blog-del' blog.id %}">حذف&nbsp&nbsp&nbsp&nbsp<i class="bi bi-x-octagon"></i></a>
+        <button type="submit" class="btn btn-success cc_input-label mt-4">
+            حفظ&nbsp&nbsp&nbsp&nbsp
+            <i class="bi bi-pen"></i>
+          </button>
+    </form>
+</div>
+
+{% endblock %}

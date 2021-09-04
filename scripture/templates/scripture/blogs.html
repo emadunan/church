@@ -6,30 +6,54 @@
 <div id="id_blogs__title">
     <h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">
         <span style="float:right">
-            <a href="#">
+            <a href="#id_blogs__filter-area" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="id_blogs__filter-area">
                 <img src="{% static 'scripture/img/funnel.png' %}" alt="Home" style="width: 2rem;">
             </a>
         </span>
-        مدونات المستخدمين
+        المنشورات
         <span style="float: left;">
             <a href="{% url 'blog-add' %}">
                 <img src="{% static 'scripture/img/add.png' %}" alt="Home" style="width: 2rem;">
             </a>
         </span>
-        
+
     </h1>
 </div>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div id="id_blogs__filter-area" class="collapse mb-3">
+    <form id="id_blogs__filter-from" action="" method="GET">
+        <div id="id_blog__filters-criteria">
+            <div class="p-1">
+                <input type="text" class="form-control" placeholder="الكاتب" />
+            </div>
+            <div class="p-1">
+                <input type="text" class="form-control" placeholder="العنوان" />
+            </div>
+            <div class="p-1">
+                <input type="text" class="form-control" placeholder="المحتوى" />
+            </div>
+            <div class="p-1">
+                <input type="text" class="form-control" placeholder="من تاريخ" />
+            </div>
+            <div class="p-1">
+                <input type="text" class="form-control" placeholder="إلى تاريخ" />
+            </div>
+        </div>
+        <div class="p-1">
+            <button class="btn btn-success">تصفية</button>
+        </div>
 
-    
+    </form>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
     {% for blog in blogs %}
     <div class="col">
         <div class="card h-100 border-warning cc_blog__card">
             <div class="card-header bg-transparent border-success">
                 <h5>{{blog.title}}</h5>
                 <form action="{% url 'blog' blog.id %}" method="get">
-                    <button type="submit" class="btn btn-sm btn-success">قراءة</button>
+                    <button type="submit" class="btn btn-sm btn-outline-success">قراءة</button>
                 </form>
             </div>
             <div class="card-body">
@@ -39,7 +63,11 @@
             <div class="card-footer border-warning">
                 <small class="text-muted">{{blog.written_by.first_name}} {{blog.written_by.last_name}}</small>
                 <small class="text-muted">{{blog.last_edited}}</small>
-                <button class="btn btn-sm btn-outline-warning"><i class="bi bi-pen"></i></button>
+                <form action="{% url 'blog-edit' blog.id %}" method="get">
+                    <button type="submit" class="btn btn-sm btn-outline-warning">
+                        <i class="bi bi-pen"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </div>

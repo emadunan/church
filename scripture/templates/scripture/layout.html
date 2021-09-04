@@ -48,22 +48,22 @@
                 <a
                   class="nav-link {%if '/blogs' in request.path%}active{%endif%}"
                   href="{% url 'blogs' %}"
-                  >المدونات</a>
+                  >المنشورات</a>
               </li>
               {% endif %}
-              <li class="nav-item">
-                <a
-                  class="nav-link {%if '/search' in request.path%}active{%endif%}"
-                  href="{% url 'search' %}"
-                  aria-current="page"
-                  >البحث</a>
-              </li>
               <li class="nav-item">
                 <a
                   class="nav-link {%if '/books' in request.path%}active{%endif%}"
                   href="{% url 'books' %}"
                   aria-current="page"
                   >الاسفار</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link {%if '/search' in request.path%}active{%endif%}"
+                  href="{% url 'search' %}"
+                  aria-current="page"
+                  >البحث</a>
               </li>
               <li class="nav-item">
                 <a
