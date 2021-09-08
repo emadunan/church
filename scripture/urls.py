@@ -8,6 +8,8 @@ urlpatterns = [
     path('logout', views.view_logout, name='logout'),
     path('search', views.view_search, name='search'),
     path('guide', views.view_guide, name='guide'),
+    path('mysettings', views.view_mysettings, name='mysettings'),
+    
 
     path('books', views.view_books, name='books'),
     path('books/<int:id>', views.view_book, name='book'),

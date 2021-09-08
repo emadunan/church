@@ -111,6 +111,10 @@ def view_register(request):
         })
 
 
+def view_mysettings(request):
+    return render(request, "scripture/mysettings.html")
+
+
 def view_books(request):
     books = Book.objects.all()
     return render(request, "scripture/books.html", {

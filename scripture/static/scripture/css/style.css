@@ -22,6 +22,14 @@
   font-weight: normal;
 }
 
+/* Variables */
+:root {
+  --font_small: 1rem;
+  --font_medium: 1.2rem;
+  --font_large: 1.5rem;
+}
+/* ********* */
+
 header {
   /* -webkit-text-stroke: 2px black; */
   background-image: url("../img/navbar-img.jpg");
@@ -148,7 +156,7 @@ nav ul {
 
 .table tbody {
   font-family: amiri;
-  font-size: 1.2rem;
+  font-size: var(--font_large);
 }
 
 .cc_book-title__link {
@@ -323,6 +331,21 @@ nav ul {
 #id_blog__filters-criteria {
   display: flex;
   flex-wrap: wrap;
+}
+
+#id_myblogs__area .card-header {
+  font-family: cairoBold;
+}
+
+#id_myblogs__area a {
+  float: left;
+  font-family: cairoRegular;
+}
+
+#id_myblogs__area .card-body p {
+  font-family: amiri;
+  font-size: 1.2rem;
+  text-align: justify;
 }
 
 /* Generals */

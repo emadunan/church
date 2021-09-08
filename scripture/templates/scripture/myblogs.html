@@ -3,10 +3,25 @@
 
 
 {% block content %}
-<div id="id_blogs__title">
+<div id="id_myblogs__title">
     <h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">
         منشوراتي
     </h1>
 </div>
-{% endblock %}
+<div id="id_myblogs__area">
 
+    {% for blog in blogs %}
+    <div class="card mb-4">
+        <h5 class="card-header">{{blog.title}}
+            <a href="{% url 'blog' blog.id %}" class="btn btn-success ms-1">قراءة <i class="bi bi-book"></i></a>
+            <a href="{% url 'blog-edit' blog.id %}" class="btn btn-warning">تعديل <i class="bi bi-pen"></i></a>
+        </h5>
+        <div class="card-body">
+            <p class="card-text">{{blog.content|slice:":400"}} ...</p>
+            <small class="text-muted">{{blog.last_edited}}</small>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

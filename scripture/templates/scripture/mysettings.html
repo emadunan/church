@@ -1,0 +1,22 @@
+{% extends 'scripture/layout.html' %}
+{% load static %}
+
+{% block script %}
+<script src="{% static 'scripture/js/mysettings.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+<div id="id_mysettings__title">
+    <h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">
+        إعداداتي
+    </h1>
+</div>
+<div id="id_mysettings__area">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button id="id_btn__font-size_small" type="button" class="btn btn-primary">صغير</button>
+        <button id="id_btn__font-size_medium" type="button" class="btn btn-primary">متوسط</button>
+        <button id="id_btn__font-size_large" type="button" class="btn btn-primary">كبير</button>
+      </div>
+</div>
+{% endblock %}
