@@ -197,6 +197,12 @@ def view_blogs(request):
         "blogs": blogs
     })
 
+def view_my_blogs(request):
+    blogs = Blog.objects.filter(written_by=request.user)
+    return render(request, "scripture/myblogs.html", {
+        "blogs": blogs
+    })
+
 
 def view_blog(request, id):
     blog = Blog.objects.get(pk=id)

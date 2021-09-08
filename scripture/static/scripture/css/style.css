@@ -67,6 +67,10 @@ main {
   color: #ffffff;
 }
 
+.cc_user__dropdown {
+  font-family: cairoRegular;
+}
+
 .dropdown-menu {
   min-width: 3rem;
 }

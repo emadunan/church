@@ -23,6 +23,7 @@ urlpatterns = [
     path('blog-add', views.view_blog_add, name='blog-add'),
     path('blog-edit/<int:id>', views.view_blog_edit, name='blog-edit'),
     path('blog-del/<int:id>', views.view_blog_del, name='blog-del'),
+    path('myblogs', views.view_my_blogs, name='my-blogs'),
 
     # API End Points
     path('setLocation', views.view_setLocation, name='setLocation'),

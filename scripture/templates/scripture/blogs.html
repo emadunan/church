@@ -63,11 +63,15 @@
             <div class="card-footer border-warning">
                 <small class="text-muted">{{blog.written_by.first_name}} {{blog.written_by.last_name}}</small>
                 <small class="text-muted">{{blog.last_edited}}</small>
+                
+                {% if blog.written_by.id == user.id %}
                 <form action="{% url 'blog-edit' blog.id %}" method="get">
                     <button type="submit" class="btn btn-sm btn-outline-warning">
                         <i class="bi bi-pen"></i>
                     </button>
                 </form>
+                {% endif %}
+                    
             </div>
         </div>
     </div>

@@ -97,7 +97,7 @@
             </ul>
 
             {% if user.is_authenticated %}
-            <div class="btn-group ms-auto">
+            <div class="btn-group ms-auto cc_user__dropdown">
               <a id="id_user-favorites__flag" href="{% url 'getFavVersesForUser' %}">
                 <img src="{% static 'scripture/img/bookmark.png' %}" alt="Home" class="me-3">
               </a>
@@ -113,9 +113,9 @@
                 > مرحباً {{user.first_name}} {{user.last_name}}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-start">
-                  <li><a class="dropdown-item" href="#">الإعدادات</a></li>
-                  <li><a class="dropdown-item" href="#">البروفيل</a></li>
-                  <li><a class="dropdown-item" href="{% url 'logout' %}">خروج</a></li>
+                  <li><a class="dropdown-item text-center" href="{% url 'my-blogs' %}">منشوراتى</a></li>
+                  <li><a class="dropdown-item text-center" href="#">البروفيل</a></li>
+                  <li><a class="dropdown-item text-center" href="{% url 'logout' %}">خروج</a></li>
                 </ul>
               </div>
             </div>
