@@ -21,22 +21,23 @@
 </div>
 
 <div id="id_blogs__filter-area" class="collapse mb-3">
-    <form id="id_blogs__filter-from" action="" method="GET">
+    <form id="id_blogs__filter-from" action="{% url 'filtered-blogs' %}" method="POST">
+        {% csrf_token %}
         <div id="id_blog__filters-criteria">
-            <div class="p-1">
-                <input type="text" class="form-control" placeholder="الكاتب" />
+            <div class="p-1 cc_filter_criteria">
+                <input type="text" class="form-control" placeholder="الكاتب" name="written_by"/>
             </div>
-            <div class="p-1">
-                <input type="text" class="form-control" placeholder="العنوان" />
+            <div class="p-1 cc_filter_criteria">
+                <input type="text" class="form-control" placeholder="العنوان" name="title"/>
             </div>
-            <div class="p-1">
-                <input type="text" class="form-control" placeholder="المحتوى" />
+            <div class="p-1 cc_filter_criteria">
+                <input type="text" class="form-control" placeholder="المحتوى" name="content"/>
             </div>
-            <div class="p-1">
-                <input type="date" class="form-control" placeholder="من تاريخ" />
+            <div class="p-1 cc_filter_criteria">
+                <input type="date" class="form-control" placeholder="من تاريخ" name="start_date"/>
             </div>
-            <div class="p-1">
-                <input type="date" class="form-control" placeholder="إلى تاريخ" />
+            <div class="p-1 cc_filter_criteria">
+                <input type="date" class="form-control" placeholder="إلى تاريخ" name="end_date"/>
             </div>
         </div>
         <div class="p-1">

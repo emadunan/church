@@ -15,7 +15,10 @@ import datetime;
 
 # APP VIEWS.
 def view_index(request):
-    return render(request, "scripture/index.html")
+    books = Book.objects.all()
+    return render(request, "scripture/index.html", {
+        "books": books
+    })
 
 
 def view_main(request):
@@ -109,6 +112,15 @@ def view_register(request):
         return render(request, "scripture/register.html", {
             "countries": countries
         })
+
+
+def view_retrieve_password(request):
+    if request.method == 'POST':
+        pass
+
+    else:
+        return render(request, "scripture/retrievepassword.html")
+
 
 
 def view_mysettings(request):
@@ -205,6 +217,47 @@ def view_my_blogs(request):
     blogs = Blog.objects.filter(written_by=request.user)
     return render(request, "scripture/myblogs.html", {
         "blogs": blogs
+    })
+
+
+def view_filter_blogs(request):
+    filtered_blogs = Blog.objects.filter(for_publish=True)
+
+    if request.POST.get('title'):
+        print('hit: title')
+        title = request.POST.get('title')
+        filtered_blogs = filtered_blogs.filter(title__contains=title)
+
+    if request.POST.get('content'):
+        print('hit: content')
+        content = request.POST.get('content')
+        filtered_blogs = filtered_blogs.filter(content__contains=content)
+
+    if request.POST.get('written_by'):
+        print('hit: written_by')
+        written_by = request.POST.get('written_by')
+        filtered_blogs = filtered_blogs.filter(Q(written_by__first_name=written_by) | Q(written_by__last_name=written_by))
+    
+    if request.POST.get('start_date') and request.POST.get('end_date'):
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        filtered_blogs = filtered_blogs.filter(last_edited__range=(start_date, end_date))
+
+    if request.POST.get('start_date') and request.POST.get('end_date'):
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        filtered_blogs = filtered_blogs.filter(last_edited__range=(start_date, end_date))
+    elif request.POST.get('start_date'):
+        start_date = request.POST.get('start_date')
+        filtered_blogs = filtered_blogs.exclude(last_edited__lt=start_date)
+    elif request.POST.get('end_date'):
+        end_date = request.POST.get('end_date')
+        filtered_blogs = filtered_blogs.exclude(last_edited__gt=end_date)
+
+    print(filtered_blogs)
+
+    return render(request, "scripture/blogs.html", {
+        "blogs": filtered_blogs
     })
 
 

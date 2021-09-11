@@ -84,8 +84,9 @@ main {
 }
 
 #id_login__link {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: rgba(0, 0, 0, 0.55);
+  font-family: cairoBold;
 }
 
 #id_login__link:hover {
@@ -103,6 +104,10 @@ main {
 
 #id_user-location__flag:hover, #id_user-favorites__flag:hover {
     cursor: pointer;
+}
+
+#id_index__area {
+
 }
 
 #id_search__section {
@@ -333,6 +338,10 @@ nav ul {
   flex-wrap: wrap;
 }
 
+.cc_filter_criteria {
+  width: 11rem;
+}
+
 #id_myblogs__area .card-header {
   font-family: cairoBold;
 }
@@ -346,6 +355,12 @@ nav ul {
   font-family: amiri;
   font-size: 1.2rem;
   text-align: justify;
+}
+
+#id_mysettings__area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Generals */

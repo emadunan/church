@@ -1,0 +1,30 @@
+{% extends 'scripture/layout.html' %}
+{% load static %}
+{% load scripture_extras %}
+
+
+
+{% block content %}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for book in books %}
+
+    <div class="col">
+        <div class="card h-100">
+            {% with book.name|add:".jpg" as imgname %}
+            <img src="{% static 'scripture/img/bookcovers/'|add:imgname %}" class="card-img-top" alt="{{book.title}}">
+            {% endwith %}
+            <div class="card-body">
+                <h5 class="card-title">{{book.titlelong}}</h5>
+                <p class="card-text">سيتم توفير بيانات مختصرة عن السفر هنا</p>
+                <a class="btn btn-success" href="{% url 'book' book.id %}">
+                    الدخول الى السفر&nbsp&nbsp
+                    <img src="{% static 'scripture/img/left-arrow_w.png' %}" alt="Home" style="width: 2rem;">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}
