@@ -11,7 +11,7 @@
     <div class="col">
         <div class="card h-100">
             {% with book.name|add:".jpg" as imgname %}
-            <img src="{% static 'scripture/img/bookcovers/'|add:imgname %}" class="card-img-top" alt="{{book.title}}">
+            <img style="height: 15rem; object-fit: cover;" src="{% static 'scripture/img/bookcovers/'|add:imgname %}" class="card-img-top" alt="{{book.title}}">
             {% endwith %}
             <div class="card-body">
                 <h5 class="card-title">{{book.titlelong}}</h5>
