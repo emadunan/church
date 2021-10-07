@@ -93,10 +93,10 @@
             {% if user.is_authenticated %}
             <div class="btn-group ms-auto cc_user__dropdown">
               <a id="id_user-favorites__flag" href="{% url 'getFavVersesForUser' %}">
-                <img src="{% static 'scripture/img/bookmark.png' %}" alt="Home" class="me-3">
+                <img src="{% static 'scripture/img/bookmark.png' %}" alt="Home" class="me-1">
               </a>
               <div id="id_user-location__flag" onclick="redirectToCurrentLoc()">
-                <img src="{% static 'scripture/img/achievement.png' %}" alt="Home" class="me-3">
+                <img src="{% static 'scripture/img/achievement.png' %}" alt="Home" class="me-5">
               </div>
               <div style="margin: auto;">
                 <button
@@ -109,6 +109,7 @@
                 <ul class="dropdown-menu dropdown-menu-start">
                   <li><a class="dropdown-item text-center" href="{% url 'my-blogs' %}">منشوراتى</a></li>
                   <li><a class="dropdown-item text-center" href="{% url 'mysettings' %}">الإعدادات</a></li>
+                  <li><a class="dropdown-item text-center" href="{% url 'reset-password' %}">تعيين كلمة المرور</a></li>
                   <li><a class="dropdown-item text-center" href="{% url 'logout' %}">خروج</a></li>
                 </ul>
               </div>

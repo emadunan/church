@@ -10,6 +10,7 @@ urlpatterns = [
     path('guide', views.view_guide, name='guide'),
     path('mysettings', views.view_mysettings, name='mysettings'),
     path('retrieve-password', views.view_retrieve_password, name='retrieve-password'),
+    path('reset-password', views.view_reset_password, name='reset-password'),
     
 
     path('books', views.view_books, name='books'),

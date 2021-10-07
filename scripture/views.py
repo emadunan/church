@@ -1,16 +1,18 @@
-from django.http import request
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Q
 from .models import Blog, Book, Chapter, User, Verse, Country
 from django.views.decorators.csrf import csrf_exempt
 import json
 import functools
-import datetime;
+import datetime
+import string
+import random
+import smtplib
 
 
 # APP VIEWS.
@@ -114,9 +116,91 @@ def view_register(request):
         })
 
 
+def view_reset_password(request):
+    if request.method == 'POST':
+        # Extracting data from the request
+        oldPassword = request.POST.get("old_password")
+        newPassword = request.POST.get("new_password")
+        confirmPassword = request.POST.get("confirm_password")
+
+        # Getting old password from db
+        c_user = request.user
+        user_old_password = c_user.password
+
+        # Hashing the old password received in the request
+        matchcheck = check_password(oldPassword, user_old_password)
+
+        # Validating the old and new passwords
+        if matchcheck and (newPassword == confirmPassword):
+            print(newPassword)
+            c_user.password = make_password(newPassword)
+            c_user.save()
+            return(HttpResponseRedirect(reverse('index')))
+
+        print('password not match')
+        return render(request, "scripture/resetPassword.html", {"errorMessage": "رجاء التأكد من صحة البيانات المدخلة، وإعادة المحاولة"})
+
+    else:
+        return render(request, "scripture/resetPassword.html")
+
+
 def view_retrieve_password(request):
     if request.method == 'POST':
-        pass
+        user_username = request.POST.get('username')
+        user_email = request.POST.get('email')
+        user_mobile = request.POST.get('mobile')
+        # get random password pf length 8 with letters, digits, and symbols
+        # characters = string.ascii_letters + string.digits + string.punctuation
+        characters = string.ascii_letters + string.digits
+        temp_password = ''.join(random.choice(characters) for i in range(8))
+        print(temp_password)
+
+        # Save the temp password in the db
+        user = User.objects.filter(email=user_email).first()
+        
+        if not user:
+            return render(request, "scripture/retrievepassword.html", {
+                "errorMessage": "رجاء التأكد من صحة البيانات المدخلة، وإعادة المحاولة"
+            })
+        
+        if user_username == user.username and user_mobile == user.mobile:
+            pass
+            # user.password = temp_password
+            # user.save()
+        else:
+            return render(request, "scripture/retrievepassword.html", {
+                "errorMessage": "رجاء التأكد من صحة البيانات المدخلة، وإعادة المحاولة"
+            })
+
+        # Send Mail to reset passwords
+        gmail_user = 'yohanan.ben.yona@gmail.com'
+        gmail_password = 'Rxjs$gm#9o1!Ie2nu'
+
+        # try:
+        to = [user_email]
+        subject = 'Super Important Message'
+        # body = u'كلمة المرور المؤقتة هي: ({temp_password}) \n برجاء إعادة تعيين كلمة المرور بعد الدخول على الحساب، شكراً!'
+        body = f'Your temp password: {temp_password}'
+
+        email_text = """\
+        From: %s
+        To: %s
+        Subject: %s
+
+        %s
+        """ % (gmail_user, ", ".join(to), subject, body)
+
+        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+        server.ehlo()
+        server.login(gmail_user, gmail_password)
+        server.sendmail(gmail_user, to, email_text)
+        server.close()
+        print('MAIL SENT!')
+
+        # except:
+        #     print('Something went wrong...')
+
+        return HttpResponseRedirect(reverse('retrieve-password'))
 
     else:
         return render(request, "scripture/retrievepassword.html")

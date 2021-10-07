@@ -35,7 +35,7 @@ class Character(models.Model):
     gender = models.CharField(max_length=10)
     age = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(969)])
     about = models.TextField()
-    identiy = models.ManyToManyField(Identity)
+    identity = models.ManyToManyField(Identity)
     is_writter = models.BooleanField()
 
     def __str__(self) -> str:
@@ -45,8 +45,9 @@ class Character(models.Model):
 class BooKMeta(models.Model):
     written_from = models.DateField(auto_now=False, auto_now_add=False)
     written_to = models.DateField(auto_now=False, auto_now_add=False)
-    written_in = models.TextField()
+    written_in = models.CharField(max_length=255)
     written_by = models.ManyToManyField(Character)
+    about = models.TextField(null=True)
 
 
 class Book(models.Model):

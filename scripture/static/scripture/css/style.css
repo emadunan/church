@@ -106,8 +106,12 @@ main {
     cursor: pointer;
 }
 
-#id_index__area {
+#id_index__area h5{
+  font-family: cairoBold;
+}
 
+#id_index__area a{
+  font-family: cairoRegular;
 }
 
 #id_search__section {
@@ -342,6 +346,10 @@ nav ul {
   width: 11rem;
 }
 
+#id_myblogs__title h1 {
+  font-family: rakkas;
+}
+
 #id_myblogs__area .card-header {
   font-family: cairoBold;
 }
@@ -357,10 +365,15 @@ nav ul {
   text-align: justify;
 }
 
+#id_mysettings__title h1 {
+  font-family: rakkas;
+}
+
 #id_mysettings__area {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: cairoRegular;
 }
 
 /* Generals */
