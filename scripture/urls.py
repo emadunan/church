@@ -11,6 +11,8 @@ urlpatterns = [
     path('mysettings', views.view_mysettings, name='mysettings'),
     path('retrieve-password', views.view_retrieve_password, name='retrieve-password'),
     path('reset-password', views.view_reset_password, name='reset-password'),
+    path('verify', views.verify_new_user),
+    path('userprofile', views.view_userprofile, name='userprofile'),
     
 
     path('books', views.view_books, name='books'),

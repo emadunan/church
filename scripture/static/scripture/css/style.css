@@ -281,6 +281,23 @@ nav ul {
   justify-content: space-between;
 }
 
+/* Registeration Section */
+#registeration-form {
+  margin:auto;
+  max-width: 33rem;
+}
+
+#id_regform__last {
+  display: flex;
+  justify-content: space-between;
+}
+
+#id_shortmessage {
+  text-align: justify;
+  text-justify: inter-word;
+  font-family: cairoRegular;
+}
+
 /* Blogs Section */
 #id_blog-add__cont label,
 #id_blog-edit__cont label {

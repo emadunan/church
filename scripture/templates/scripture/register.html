@@ -10,7 +10,7 @@
   </div>
 {% endif %}
 
-<form action="{%url 'register' %}" method="POST">
+<form id="registeration-form" action="{%url 'register' %}" method="POST">
 
   {% csrf_token %}
   
@@ -48,6 +48,12 @@
   </div>
 
   <div class="mb-3">
+    <input type="date" class="form-control cc_input-control text-center" id="id_birthdate"
+      aria-describedby="birthdateHelp" placeholder="*تاريخ الميلاد" name="birthdate">
+    <!-- <div id="birthdateHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+  </div>
+
+  <div class="mb-3">
     <input type="password" class="form-control cc_input-control" id="id_password"
       aria-describedby="passwordHelp" placeholder="كلمة المرور*" name="password">
     <!-- <div id="passwordHelp" class="form-text">We'll never share your email with anyone else.</div> -->
@@ -59,24 +65,29 @@
     <!-- <div id="confirmHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="male" id="id_male-radioBox" />
-    <label class="form-check-label cc_input-control" for="id_male-radioBox">
-      رجل
-    </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="female" id="id_female-radioBox"/>
-    <label class="form-check-label cc_input-control" for="id_female-radioBox">
-      امرأة
-    </label>
+  <div id="id_regform__last">
+    <div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="sex" value="male" id="id_male-radioBox" />
+        <label class="form-check-label cc_input-control" for="id_male-radioBox">
+          رجل
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="sex" value="female" id="id_female-radioBox"/>
+        <label class="form-check-label cc_input-control" for="id_female-radioBox">
+          امرأة
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success cc_input-label">
+      انشاء حساب&nbsp&nbsp&nbsp&nbsp
+      <img src="{% static 'scripture/img/user-w.png' %}" alt="Login" style="width: 2rem;"/>
+    </button>
   </div>
 
 
-  <button type="submit" class="btn btn-success cc_input-label mt-4">
-    انشاء حساب&nbsp&nbsp&nbsp&nbsp
-    <img src="{% static 'scripture/img/user-w.png' %}" alt="Login" style="width: 2rem;"/>
-  </button>
+  
 </form>
 
 {% endblock %}

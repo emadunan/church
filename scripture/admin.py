@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book, Chapter, Verse
+from .models import Book, Chapter, Verse, User
 
 # Models Declarations in the admin site.
 class BookAdmin(admin.ModelAdmin):
@@ -9,3 +9,4 @@ class BookAdmin(admin.ModelAdmin):
 admin.site.register(Book, BookAdmin)
 admin.site.register(Chapter)
 admin.site.register(Verse)
+admin.site.register(User)

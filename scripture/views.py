@@ -13,6 +13,7 @@ import datetime
 import string
 import random
 import smtplib
+import jwt
 
 
 # APP VIEWS.
@@ -65,6 +66,7 @@ def view_register(request):
         country_id = request.POST.get('country')
         first_name = request.POST.get('firstName')
         last_name = request.POST.get('lastName')
+        birthdate = request.POST.get('birthdate')
         password = request.POST.get('password')
         confirm = request.POST.get('confirm')
         sex = request.POST.get('sex')
@@ -101,20 +103,62 @@ def view_register(request):
             mobile=mobile,
             first_name=first_name,
             last_name=last_name,
+            birthdate=birthdate,
+            is_active=False,
             password=make_password(password),
             gender=sex
         )
         user.save()
 
+        # Creating access jwt token
+        encoded_jwt = jwt.encode({"id": user.id, "email": user.email, "mobile":user.mobile}, "THE LORD IS MY PROVIDER", algorithm="HS256")
+
+        # Sending the activation link by mail
+        gmail_user = 'appmsr7@gmail.com'
+        gmail_password = '4get@web'
+
+        # try:
+        to = [user.email]
+        print(to)
+        subject = 'Super Important Message'
+        body = f'open the link to activate your account: http://127.0.0.1:8000/verify?t={encoded_jwt}'
+
+        email_text = """\
+        From: %s
+        To: %s
+        Subject: %s
+
+        %s
+        """ % (gmail_user, ", ".join(to), subject, body)
+
+        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+        server.ehlo()
+        server.login(gmail_user, gmail_password)
+        server.sendmail(gmail_user, to, email_text)
+        server.close()
+        print('MAIL SENT!')
+
+
         # Login registered user and redirect him to the index page
-        login(request, user)
-        return HttpResponseRedirect(reverse('index'))
+        return render(request, "scripture/shortMessage.html", {
+        "shortMessage": f"تم إنشاء الحساب، برجاء الدخول على البريد الإلكتروني الذ تم التسجيل به ({user.email}) والضغط على الرابط بالرسالة الوردة من فريق إدارة الموقع (appmsr7@gmail.com) لتفعيل الحساب، ثم الدخول بأستخدام أسم المستخدم وكلمة المرور الخاصة بكم."
+    })
 
     else:
         return render(request, "scripture/register.html", {
             "countries": countries
         })
 
+
+def verify_new_user(request):
+    encoded_jwt = request.GET.get('t')
+    decoded_jwt = jwt.decode(encoded_jwt, "THE LORD IS MY PROVIDER", algorithms=["HS256"])
+    user = User.objects.get(pk=decoded_jwt['id'])
+    user.is_active = True
+    user.save()
+
+    return HttpResponseRedirect(reverse('login'))
+        
 
 def view_reset_password(request):
     if request.method == 'POST':
@@ -164,17 +208,16 @@ def view_retrieve_password(request):
             })
         
         if user_username == user.username and user_mobile == user.mobile:
-            pass
-            # user.password = temp_password
-            # user.save()
+            user.password = make_password(temp_password)
+            user.save()
         else:
             return render(request, "scripture/retrievepassword.html", {
                 "errorMessage": "رجاء التأكد من صحة البيانات المدخلة، وإعادة المحاولة"
             })
 
         # Send Mail to reset passwords
-        gmail_user = 'yohanan.ben.yona@gmail.com'
-        gmail_password = 'Rxjs$gm#9o1!Ie2nu'
+        gmail_user = 'appmsr7@gmail.com'
+        gmail_password = '4get@web'
 
         # try:
         to = [user_email]
@@ -205,6 +248,9 @@ def view_retrieve_password(request):
     else:
         return render(request, "scripture/retrievepassword.html")
 
+
+def view_userprofile(request):
+    return render(request, "scripture/userprofile.html")
 
 
 def view_mysettings(request):
