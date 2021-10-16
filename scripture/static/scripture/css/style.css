@@ -22,7 +22,7 @@
   font-weight: normal;
 }
 
-/* Variables */
+/* Variables "NOT_USED" */
 :root {
   --font_small: 1rem;
   --font_medium: 1.2rem;
@@ -165,7 +165,6 @@ nav ul {
 
 .table tbody {
   font-family: amiri;
-  font-size: var(--font_large);
 }
 
 .cc_book-title__link {
@@ -296,6 +295,25 @@ nav ul {
   text-align: justify;
   text-justify: inter-word;
   font-family: cairoRegular;
+}
+
+/* Login Section */
+
+#login__form {
+  margin:auto;
+  max-width: 33rem;
+}
+
+/* Edit Profile Section*/
+#edit-profile__form {
+  margin:auto;
+  max-width: 33rem;
+}
+
+/* Reset Password Section*/
+#id_reset-password {
+  margin:auto;
+  max-width: 33rem;
 }
 
 /* Blogs Section */

@@ -219,38 +219,79 @@ def view_retrieve_password(request):
         gmail_user = 'appmsr7@gmail.com'
         gmail_password = '4get@web'
 
-        # try:
-        to = [user_email]
-        subject = 'Super Important Message'
-        # body = u'كلمة المرور المؤقتة هي: ({temp_password}) \n برجاء إعادة تعيين كلمة المرور بعد الدخول على الحساب، شكراً!'
-        body = f'Your temp password: {temp_password}'
+        try:
+            to = [user_email]
+            subject = 'Super Important Message'
+            # body = u'كلمة المرور المؤقتة هي: ({temp_password}) \n برجاء إعادة تعيين كلمة المرور بعد الدخول على الحساب، شكراً!'
+            body = f'Your temp password: {temp_password}'
 
-        email_text = """\
-        From: %s
-        To: %s
-        Subject: %s
+            email_text = """\
+            From: %s
+            To: %s
+            Subject: %s
 
-        %s
-        """ % (gmail_user, ", ".join(to), subject, body)
+            %s
+            """ % (gmail_user, ", ".join(to), subject, body)
 
-        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-        server.ehlo()
-        server.login(gmail_user, gmail_password)
-        server.sendmail(gmail_user, to, email_text)
-        server.close()
-        print('MAIL SENT!')
+            server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+            server.ehlo()
+            server.login(gmail_user, gmail_password)
+            server.sendmail(gmail_user, to, email_text)
+            server.close()
+            print('MAIL SENT!')
 
-        # except:
-        #     print('Something went wrong...')
+        except:
+            return render(request, "scripture/shortMessage.html", {
+            "shortMessage": "حدث خطأ! من فضلك أعد المحاولة"
+            })
 
-        return HttpResponseRedirect(reverse('retrieve-password'))
+        return render(request, "scripture/shortMessage.html", {
+            "shortMessage": f"تم إرسال كلمة مرور جديدة على البريد الالكتروني الخاص بك ({user.email})"
+        })
 
     else:
         return render(request, "scripture/retrievepassword.html")
 
 
 def view_userprofile(request):
-    return render(request, "scripture/userprofile.html")
+    if request.method == "POST":
+        username = request.POST.get('username')
+        email = request.POST.get('e_mail')
+        mobile = request.POST.get('mobile')
+        country_id = request.POST.get('country')
+        first_name = request.POST.get('firstName')
+        last_name = request.POST.get('lastName')
+        birthdate = request.POST.get('birthdate')
+        sex = request.POST.get('sex')
+
+        # Validation
+        if User.objects.exclude(pk=request.user.id).filter(username=username).count() > 0:
+            return render(request, "scripture/userprofile.html", {
+                "errorMessage": "هذا الاسم مستخدم بالفعل، من فضلك أختر أسم أخر أو أضف بعض الارقام للاسم"
+            })
+
+        # Get the selected country
+        country = Country.objects.get(pk=int(country_id))
+
+        # Update user profile data
+        user = request.user
+        user.username = username
+        user.email = email
+        user.mobile = mobile
+        user.country = country
+        user.first_name = first_name
+        user.last_name = last_name
+        user.birthdate = birthdate
+        user.gender = sex
+
+        user.save()
+        return redirect(reverse('index'))
+
+    # Get all countries and current user data
+    countries = Country.objects.all()
+    user = request.user
+
+    return render(request, "scripture/userprofile.html", {"user": user, "countries": countries})
 
 
 def view_mysettings(request):

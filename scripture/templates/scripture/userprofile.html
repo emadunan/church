@@ -1,6 +1,9 @@
 {% extends 'scripture/layout.html' %}
 {% load static %}
 
+{% block script %}
+<script src="{% static 'scripture/js/userprofile.js' %}"></script>
+{% endblock %}
 
 {% block content %}
 
@@ -10,30 +13,30 @@
   </div>
 {% endif %}
 
-<form action="{%url 'register' %}" method="POST">
+<form id="edit-profile__form" action="{%url 'userprofile' %}" method="POST">
 
   {% csrf_token %}
   
   <div class="mb-3">
     <input type="text" class="form-control cc_input-control" id="id_username"
-      aria-describedby="usernameHelp" placeholder="اسم المستخدم*" name="username">
+      aria-describedby="usernameHelp" placeholder="اسم المستخدم*" name="username" value="{{user.username}}">
     <div id="usernameHelp" class="form-text">لتسجيل الدخول، يفضل ان يكون باللغة الانجليزية، ويجب عليك عدم الافصاح به!</div>
   </div>
 
   <div class="mb-3">
     <input type="email" class="form-control cc_input-control text-center" id="id_email"
-      aria-describedby="emailHelp" placeholder="*البريد الالكتروني" name="e_mail">
+      aria-describedby="emailHelp" placeholder="*البريد الالكتروني" name="e_mail" value="{{user.email}}">
     <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
   <div class="mb-3 input-group">
     <input type="text" class="form-control cc_input-control" id="id_mobile" 
-      aria-describedby="mobilelHelp" placeholder="رقم الموبيل" name="mobile">
+      aria-describedby="mobilelHelp" placeholder="رقم الموبيل" name="mobile" value="{{user.mobile}}">
     <select id="id_country" class="form-select cc_input-control"
       aria-label="Default select example" name="country">
       <!-- <option selected>Open this select menu</option> -->
       {% for country in countries %}
-        <option value="{{ country.id }}" {% if country.id == 63 %}selected{% endif %}>{{country.title}} ({{country.code}}+) </option>
+        <option value="{{ country.id }}" {% if country.id == user.country.id %}selected{% endif %}>{{country.title}} ({{country.code}}+) </option>
       {% endfor %}
     </select>
     <!-- <div id="mobileHelp" class="form-text">We'll never share your email with anyone else.</div> -->
@@ -41,30 +44,38 @@
 
   <div class="mb-3 input-group">
     <input type="text" class="form-control cc_input-control" id="id_first-name"
-      aria-describedby="firstNamelHelp" placeholder="الاسم الاول*" name="firstName">
+      aria-describedby="firstNamelHelp" placeholder="الاسم الاول*" name="firstName" value="{{user.first_name}}">
     <input type="text" class="form-control cc_input-control" id="id_last-name"
-      aria-describedby="lastNameHelp" placeholder="اسم العائلة*" name="lastName">
+      aria-describedby="lastNameHelp" placeholder="اسم العائلة*" name="lastName" value="{{user.last_name}}">
     <!-- <div id="firstNamelHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="male" id="id_male-radioBox" />
-    <label class="form-check-label cc_input-control" for="id_male-radioBox">
-      رجل
-    </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="sex" value="female" id="id_female-radioBox"/>
-    <label class="form-check-label cc_input-control" for="id_female-radioBox">
-      امرأة
-    </label>
+  <div class="mb-3">
+    <input type="date" class="form-control cc_input-control text-center" id="id_birthdate" data-birthdate="{{user.birthdate}}"
+      aria-describedby="birthdateHelp" placeholder="*تاريخ الميلاد" name="birthdate">
+    <!-- <div id="birthdateHelp" class="form-text">We'll never share your email with anyone else.</div> -->
   </div>
 
-
-  <button type="submit" class="btn btn-success cc_input-label mt-4">
-    تعديل &nbsp&nbsp&nbsp&nbsp
-    <img src="{% static 'scripture/img/user-w.png' %}" alt="Login" style="width: 2rem;"/>
-  </button>
+  <div id="id_regform__last">
+    <div data-gender="{{user.gender}}">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="sex" value="male" id="id_male-radioBox" />
+        <label class="form-check-label cc_input-control" for="id_male-radioBox">
+          رجل
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="sex" value="female" id="id_female-radioBox"/>
+        <label class="form-check-label cc_input-control" for="id_female-radioBox">
+          امرأة
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success cc_input-label">
+      تعديل &nbsp&nbsp&nbsp&nbsp
+      <img src="{% static 'scripture/img/editprofile_w.png' %}" alt="Login" style="width: 2rem;"/>
+    </button>
+  </div>
 </form>
 
 {% endblock %}
