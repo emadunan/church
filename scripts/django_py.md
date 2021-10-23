@@ -1,7 +1,8 @@
 ### Main Imports
 from scripture.models import Book, Chapter, Verse
 import re
-from scripture.epk_scripture.helpers import ar_numbers
+
+### Script to add Books
 
 
 ### Script to add chapters
