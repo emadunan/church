@@ -61,7 +61,7 @@
         </div>
 
         <div class="cc_chapter__content mb-5">
-            {% for verse in chapter.verse_set.all %}
+            {% for verse in chapter.verse_set.all|dictsort:"number" %}
                 <p class="cc_verse-txt" id="verse-{{verse.id}}"><span class="cc_verse-num">{{verse.number|arnum}}</span>{{ verse.textf }}</p>
             {% endfor %}
         </div>
