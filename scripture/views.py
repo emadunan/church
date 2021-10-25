@@ -121,7 +121,7 @@ def view_register(request):
         to = [user.email]
         print(to)
         subject = 'Super Important Message'
-        body = f'open the link to activate your account: http://127.0.0.1:8000/verify?t={encoded_jwt}'
+        body = f'open the link to activate your account: https://msr.church/verify?t={encoded_jwt}'
 
         email_text = """\
         From: %s
