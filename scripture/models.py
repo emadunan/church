@@ -9,7 +9,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class User(AbstractUser):
     country = models.ForeignKey('Country', null=True, on_delete=models.SET_NULL)
     mobile = models.CharField(max_length=22, null=True)
-    gender = models.CharField(max_length=4, null=True)
+    gender = models.CharField(max_length=7, null=True)
     birthdate = models.DateField(null=True)
     location = models.OneToOneField('Verse', null=True, on_delete=models.RESTRICT)
     fav_verses = models.ManyToManyField('Verse', related_name='users_like')
