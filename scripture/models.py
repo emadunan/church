@@ -57,6 +57,7 @@ class Book(models.Model):
     symbol = models.CharField(max_length=3)
     title = models.CharField(max_length=33)
     titlelong = models.CharField(max_length=99)
+    book_about = models.TextField(null=True)
     book_meta = models.OneToOneField(BooKMeta, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):

@@ -15,7 +15,7 @@
             {% endwith %}
             <div class="card-body">
                 <h5 class="card-title">{{book.titlelong}}</h5>
-                <p class="card-text">سيتم توفير بيانات مختصرة عن السفر هنا</p>
+                <p class="card-text">{{book.book_about}}</p>
                 <a class="btn btn-success" href="{% url 'book' book.id %}">
                     الدخول الى السفر&nbsp&nbsp
                     <img src="{% static 'scripture/img/left-arrow_w.png' %}" alt="Home" style="width: 2rem;">

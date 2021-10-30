@@ -114,6 +114,12 @@ main {
   font-family: cairoRegular;
 }
 
+#id_index__area .card-text {
+  text-align: justify;
+  font-family: amiri;
+  font-size: 1.2rem;
+}
+
 #id_search__section {
   background-image: url("../img/navbar-img.jpg");
 }
